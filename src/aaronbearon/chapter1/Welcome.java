@@ -1,4 +1,4 @@
-package aaronbearon.lab1;
+package aaronbearon.chapter1;
 
 public class Welcome {
     public static void main(String[] args) {
