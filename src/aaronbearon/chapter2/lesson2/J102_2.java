@@ -1,5 +1,9 @@
 package aaronbearon.chapter2.lesson2;
 
+// Aaron Blum, 20250910
+// CIST 2371 Java Lab 2, Problem 2-2
+
+// We need Scanner to do our input
 import java.util.Scanner;
 
 // This program is a Fahrenheit to Celsius converter.
@@ -10,15 +14,15 @@ public class J102_2 {
 
         // Prompt the user for the Fahrenheit temperature
         System.out.print("Please enter the temperature in Fahrenheit: ");
-        // Store it in a variable.
+        // Store it in a fahrenheit variable.
         double fahrenheit = input.nextDouble();
 
-        // Another variable is used to store the temperature converted from F to C.
+        // celsius variable to store the temperature converted from F to C.
         double celsius = (5.0 / 9) * (fahrenheit - 32);
-        // The user sees their fahrenheit temperature and the corresponding Celsius temperature.
-        System.out.println("The Fahrenheit temperature " + fahrenheit + " is: " + celsius + " degrees Celsius.");
 
-        // How I would do it using printf, so the formatting would look good.
-        // System.out.printf("The Fahrenheit temperature %.2f is: %.2f degrees Celsius.%n", fahrenheit, celsius);
+        // Print the Fahrenheit temperature and the corresponding Celsius temperature.
+        // The Celsius temperature is rounded to the nearest tenth.
+        System.out.println("The Fahrenheit temperature " + fahrenheit + " is: "
+                + Math.round(celsius * 10) / 10.0 + " degrees Celsius.");
     }
 }

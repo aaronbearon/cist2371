@@ -1,0 +1,35 @@
+----------------------------------------------------------------
+Basic Java syntax:
+
+package aaronbearon.chapter1;
+
+public class Welcome {
+    public static void main(String[] args) {
+        System.out.println("Welcome to Java!");
+    }
+}
+
+----------------------------------------------------------------
+String concat:
+
+There is a " + var + "!"
+
+----------------------------------------------------------------
+Input scanning:
+
+import java.util.Scanner;
+Scanner input = new Scanner(System.in);
+String name = input.nextLine();
+double fahrenheit = input.nextDouble();
+
+----------------------------------------------------------------
+print/println/printf
+- println adds a newline
+- print is simple - no newline, add one yourself
+- printf is for advanced formatting, also needs a newline!
+- printf specifiers: %f float/double, %s String, %d ints.
+
+Floating point format precision:
+
+System.out.printf("The Fahrenheit temperature %.2f is: %.2f degrees Celsius.%n", fahrenheit, celsius);
+----------------------------------------------------------------
