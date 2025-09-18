@@ -2,6 +2,10 @@ package aaronbearon.chapter3.lesson3;
 
 import java.util.Scanner;
 
+/**
+ * Lab 3, Part 2-2.
+ * Aaron Blum
+ */
 public class J103_2 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
