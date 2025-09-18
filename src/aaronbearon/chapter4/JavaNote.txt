@@ -1,0 +1,63 @@
+JavaNote
+Aaron Blum, CIST 2371, upd. 20250917
+
+----------------------------------------------------------------
+Datatypes in Java:
+- int for integers, 4 bytes
+- long, 8 bytes
+- float, 4 bytes
+- double, 8 bytes
+- final for constants: final double pi
+- Declare and initialize variables on the same line
+
+Identifier names in Java (case sensitive):
+Letters, numbers, _, $
+
+Variables: camelCase
+Constant: UPPER_SNAKE
+Methods: camelCase
+Class: UpperCamelCase
+Interface: adjective
+
+----------------------------------------------------------------
+String concatenation: "There is a " + var + "!"
+
+Increment / Decrement: ++var, var++, --var, var--
+
+----------------------------------------------------------------
+Input using Scanner:
+
+import java.util.Scanner;
+Scanner *** = new Scanner(System.in);
+String name = ***.nextLine();
+
+----------------------------------------------------------------
+Printing output:
+- println - adds a newline.
+- print - simple, no newline (add one if needed!)
+- printf - advanced formatting, no newline.
+- printf specifiers: %f float/double, %s String, %d ints, %n newline.
+
+Floating point formatting:
+System.out.printf("Temp %.2f is: %.2f degrees Celsius.%n".....
+
+You can also pad to the left, as in %8.2f
+
+----------------------------------------------------------------
+IntelliJ IDE tips:
+
+Ctrl + Shift + F10 : Run
+Ctrl + F5 : Rerun
+Ctrl + Alt + L : Format the code
+
+----------------------------------------------------------------
+Selections:
+
+Switch expression must be char, byte, short, int, or String.
+The AND (&&) and OR (||) operaters are lazy short circuit operators.
+switch (***)
+Then enclose cases in {}. The default keyword goes last.
+	case ***:
+	default:
+Under each case, the statements start on the next line.
+Don't forget the break keyword before the next case.
