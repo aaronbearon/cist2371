@@ -10,9 +10,9 @@ public class J103_1 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter weight in pounds: ");
-        double weight = input.nextDouble();	// weight=50
+        double weight = input.nextDouble();    // weight=50
         System.out.print("Enter height in inches: ");
-        double height = input.nextDouble();	// height=100
+        double height = input.nextDouble();    // height=100
         final double KILOGRAMS_PER_POUND = 0.4535;
         final double METERS_PER_INCH = 0.0254;
         double weightInKilograms = weight * KILOGRAMS_PER_POUND;
