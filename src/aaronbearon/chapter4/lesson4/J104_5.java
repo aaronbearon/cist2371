@@ -18,18 +18,15 @@ public class J104_5 {
         double distance = Math.pow(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2), 0.5);
         System.out.printf("The distance between (" + x1 + ", " + y1 +
                 ") and (" + x2 + ", " + y2 + ") is %.2f.\n", distance);
-        System.out.print("Integer part: (" + (int) (distance) + ").");
-        String category = "";
-        if (Math.round(distance * 100) / 100.0 < 5) {
+        System.out.printf("Integer part: (%d)\n", (int) distance);
+        String category;
+        if (distance < 5) {
             category = "Short";
-        } else if (Math.round(distance * 100) / 100.0 >= 5 && Math.round(distance * 100) / 100.0 <= 15) {
+        } else if (distance <= 15) {
             category = "Medium";
-        } else if (Math.round(distance * 100) / 100.0 > 15) {
-            category = "Long";
         } else {
-            System.out.println("Error, can't get here.");
-            System.exit(1);
+            category = "Long";
         }
-        System.out.println("Category: " + category + "Distance");
+        System.out.printf("Category: %s Distance\n", category);
     }
 }

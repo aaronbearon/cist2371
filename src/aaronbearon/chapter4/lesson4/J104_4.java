@@ -4,47 +4,52 @@ import java.util.Scanner;
 
 public class J104_4 {
     public static void main(String[] args) {
+        // Get the input from user.
+        // Allow case-insensitive characters.
         Scanner input = new Scanner(System.in);
-        System.out.print("Please enter an alphabetical letter: ");
+        System.out.print("Please enter two letters: ");
+        String guess = input.nextLine().toUpperCase();
 
-        // Allows user to enter case-insensitive first character.
-        char letter1 = Character.toUpperCase(input.next().charAt(0));
-        if (!(letter1 >= 'A' && letter1 <= 'Z')) {
-            System.out.println("Error, invalid character.");
+        // Validate the input.
+        if (guess.length() != 2) {
+            System.out.println("Invalid input");
             System.exit(1);
         }
 
-        System.out.print("Please enter another alphabetical letter: ");
-
-        // Allows user to enter case-insensitive second character.
-        char letter2 = Character.toUpperCase(input.next().charAt(0));
-        if (!(letter2 >= 'A' && letter2 <= 'Z')) {
-            System.out.println("Error, invalid character.");
+        char letter1 = guess.charAt(0);
+        char letter2 = guess.charAt(1);
+        if (letter1 < 'A' || letter1 > 'Z') {
+            System.out.println("Error, invalid first character.");
+            System.exit(1);
+        }
+        if (letter2 < 'A' || letter2 > 'Z') {
+            System.out.println("Error, invalid second character.");
             System.exit(1);
         }
 
-        String guess = String.valueOf(letter1).concat(String.valueOf(letter2));
-        char temp = 0;
+        // Generate the secret word.
         String word = "";
         int i = 0;
         while (i < 5) {
-            temp = (char) ((int) ('A') + (int) (Math.random() * 2));
-            word = word.concat(String.valueOf(temp));
+            int temp = 'A' + (int) (Math.random() * 26);
+            word = word.concat(String.valueOf((char) temp));
             i++;
         }
 
-        if (guess.charAt(0) == word.charAt(0) &&
-                guess.charAt(guess.length() - 1) == word.charAt(word.length() - 1)) {
+        // Check to see if they won.
+        boolean firstOk = letter1 == word.charAt(0);
+        boolean secondOk = letter2 == word.charAt(word.length() - 1);
+        if (firstOk && secondOk) {
             System.out.println("Both are correct.");
-        } else if (guess.charAt(0) == word.charAt(0) &&
-                !(guess.charAt(guess.length() - 1) == word.charAt(word.length() - 1))) {
+        } else if (firstOk) {
             System.out.println("The first one is correct.");
-        } else if (!(guess.charAt(0) == word.charAt(0)) &&
-                guess.charAt(guess.length() - 1) == word.charAt(word.length() - 1)) {
+        } else if (secondOk) {
             System.out.println("The second one is correct.");
         } else {
             System.out.println("Both are wrong.");
         }
+
+        // Show the answer.
         System.out.println("Generated sequence " + word);
     }
 }
