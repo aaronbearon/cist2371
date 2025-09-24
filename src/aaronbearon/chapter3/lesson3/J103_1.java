@@ -19,14 +19,14 @@ public class J103_1 {
         double heightInMeters = height * METERS_PER_INCH;
         double bmi = weightInKilograms / (heightInMeters * heightInMeters);
         System.out.println("BMI is " + bmi);
-        if (bmi < 18.5)
+        if (bmi < 18.5) {
             System.out.println("Underweight");
-        else if (bmi < 25)
+        } else if (bmi < 25) {
             System.out.println("Normal");
-        else if (bmi < 30)
+        } else if (bmi < 30) {
             System.out.println("Overweight");
-        else
+        } else {
             System.out.println("Obese");
-
+        }
     }
 }

@@ -10,7 +10,7 @@ Datatypes in Java:
 - final for constants: final double pi
 - Declare and initialize variables on the same line
 
-Identifier names in Java (case sensitive):
+Identifier names in Java (case-sensitive):
 Letters, numbers, _, $
 
 Variables: camelCase
@@ -53,11 +53,22 @@ Ctrl + Alt + L : Format the code
 ----------------------------------------------------------------
 Selections:
 
-Switch expression must be char, byte, short, int, or String.
-The AND (&&) and OR (||) operaters are lazy short circuit operators.
+If statements are super easy, just like PDD.
+
+if (***) {
+  ***
+} else if (***) {
+  ***
+} else {
+  ***
+}
+
+A switch expression must be char, byte, short, int, or String.
+The AND (&&) and OR (||) operators are lazy short circuit operators.
 switch (***)
 Then enclose cases in {}. The default keyword goes last.
 	case ***:
 	default:
 Under each case, the statements start on the next line.
 Don't forget the break keyword before the next case.
+----------------------------------------------------------------

@@ -36,14 +36,15 @@ public class J103_2 {
         // Determine what range the BMI is in; store it in weightRange.
         // This doesn't work right if a tricky user enters all zeros.
         String weightRange;
-        if (bmi < 18.5)
+        if (bmi < 18.5) {
             weightRange = "Underweight";
-        else if (bmi < 25)
+        } else if (bmi < 25) {
             weightRange = "Normal";
-        else if (bmi < 30)
+        } else if (bmi < 30) {
             weightRange = "Overweight";
-        else
+        } else {
             weightRange = "Obese";
+        }
 
         // Output our results: pounds, feet, inches, BMI, and range.
         System.out.println("==========================");
