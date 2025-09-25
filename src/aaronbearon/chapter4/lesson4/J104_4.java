@@ -2,13 +2,19 @@ package aaronbearon.chapter4.lesson4;
 
 import java.util.Scanner;
 
+/**
+ * Lab 4, Part 4 - guessing letters
+ * Aaron Blum
+ */
 public class J104_4 {
     public static void main(String[] args) {
+
         // Get the input from user.
         // Allow case-insensitive characters.
         Scanner input = new Scanner(System.in);
         System.out.print("Please enter two letters: ");
-        String guess = input.nextLine().toUpperCase();
+        String n = input.nextLine();
+        String guess = n.toUpperCase();
 
         // Validate the input.
         if (guess.length() != 2) {
@@ -22,6 +28,7 @@ public class J104_4 {
             System.out.println("Error, invalid first character.");
             System.exit(1);
         }
+
         if (letter2 < 'A' || letter2 > 'Z') {
             System.out.println("Error, invalid second character.");
             System.exit(1);
@@ -30,6 +37,8 @@ public class J104_4 {
         // Generate the secret word.
         String word = "";
         int i = 0;
+
+        // Loops are discussed in chapter 5.
         while (i < 5) {
             int temp = 'A' + (int) (Math.random() * 26);
             word = word.concat(String.valueOf((char) temp));
@@ -50,6 +59,6 @@ public class J104_4 {
         }
 
         // Show the answer.
-        System.out.println("Generated sequence " + word);
+        System.out.println("Generated sequence is " + word);
     }
 }

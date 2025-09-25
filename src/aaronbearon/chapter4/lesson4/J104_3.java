@@ -2,6 +2,10 @@ package aaronbearon.chapter4.lesson4;
 
 import java.util.Scanner;
 
+/**
+ * Lab 4, Part 3 - modulus time
+ * Aaron Blum
+ */
 public class J104_3 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
