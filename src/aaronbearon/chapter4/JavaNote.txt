@@ -72,3 +72,6 @@ Then enclose cases in {}. The default keyword goes last.
 Under each case, the statements start on the next line.
 Don't forget the break keyword before the next case.
 ----------------------------------------------------------------
+Math:
+
+Random method: num or char or var + (datatype)(Math.random() * num or var);
