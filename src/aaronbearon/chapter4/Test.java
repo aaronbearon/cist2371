@@ -1,18 +1,19 @@
 package aaronbearon.chapter4;
 
-import java.util.Scanner;
-
 public class Test {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        /*
-        System.out.print("Enter an integer: ");
-        int value = input.nextInt();
-        System.out.println("The value is " + value);
+        final String alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        for (int i = 65; i <= 90; i++) {
+            System.out.print((char) i);
+        }
+        for (int i = 97; i <= 122; i++) {
+            System.out.print((char) i);
+        }
 
-        System.out.print("Enter a line: ");
-        String line = input.next();
-        System.out.println("The line is " + line);
-        */
+        System.out.println();
+
+        for (int i = 0; i < 5; i++) {
+            System.out.print(alphabets.charAt((int) (Math.random() * alphabets.length())));
+        }
     }
 }
