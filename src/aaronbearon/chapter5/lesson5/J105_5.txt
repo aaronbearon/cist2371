@@ -1,0 +1,79 @@
+/**
+Lab 5, Part 5 text file - Palindrome checker
+Aaron Blum
+*/
+
+String s = input.nextLine();
+int low = 0;
+int high = s.length() - 1;
+boolean isPalindrome = true;
+while (low < high) {
+    if (s.charAt(low) != s.charAt(high)) {
+        isPalindrome = false;
+        break;
+    }
+
+    low++;
+    high--;
+}
+
+
+/*
+The code above is a section of the palindrome checker program.
+The analysis below will include not the code line numbers, but the text file line numbers.
+Those are visible in Notepad++ and some other text editors.
+To find out which text files have built in line numbers or line number settings,
+    please ask ChatGPT.
+
+The prompt (message the user sees) is before the above code.
+
+Line 6 lets the user type a value and stores it in a newly declared String variable s.
+    Let's say the user types "aabaa" and see what happens below.
+
+Line 7 declares an int variable low and sets it to 0, because character subscripts are 0 based.
+
+Line 8 contains a .length() method, which returns the number of characters in a String.
+    Since character subscripts are 0 based, line 8 contains .length() - 1.
+    On that line, an int variable high is declared and set to s.length() - 1,
+    where s is the String variable declared in line 6.
+    In this case, high would be 4 because "aabaa" has 5 characters.
+Line 9 declares a Boolean variable isPalindrome and sets it to true.
+
+Line 10 has a while loop with a condition in parentheses, and an opening brace to start the loop body (lines 11-17).
+    The closing brace is on line 18.
+    The condition checks whether low is less than high.
+    The loop iterates if the condition is true.
+    In the first loop iteration, low is 0 and high is 5. 0 < 5 is so the loop body runs.
+
+Line 11 has an if statement with a condition in parentheses, and an opening brace to start the if body (lines 12-13).
+    The closing brace is on line 14.
+    The condition checks whether the low character
+    (s.charAt(low)) of String s is different from the high character (s.charAt(high)).
+    In the first loop iteration, low is 0 and high is 4.
+    Since "aabaa" characters 0 and 4 are the same, the if condition is false.
+    This means the program skips lines 12-13 and continues starting after the line 14 closing brace.
+Line 12 sets isPalindrome to false (doesn't happen in the first iteration of the loop).
+
+Line 13 says break. This will immediately break out of the loop and go to right after the line 19 closing brace
+    (but not in the first iteration of the loop).
+
+Line 14 contains the if closing brace.
+
+Line 15 is blank.
+
+Line 16 increases low by one.
+Line 17 increases high by one.
+    In the first loop iteration, low becomes 1 and high becomes 3.
+
+Line 18 contains the loop closing brace.
+    After the first iteration, low is still less than high (1 < 3).
+    This means the loop will iterate a second time.
+
+This time around, it'll check the second and fourth characters in "aabaa".
+    There same, so another iteration. After that, low and high become 3, which makes the condition false.
+    The loop exits and isPalindrome is true.
+
+All of the above would happen if the string were "aabbaa", except high would me one more,
+    and the loop would iterate once more to check low and high 3 and 4.
+    It would still be a palindrome.
+*/
