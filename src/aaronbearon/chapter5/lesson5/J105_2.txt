@@ -1,0 +1,33 @@
+/**
+Lab 5, Part 2 text file - Two Loops
+Aaron Blum
+*/
+
+for (int j = 1; j <= 9; j++) // line 6
+    System.out.print(" " + j);
+System.out.println("\n-----------------------------------------");
+
+for (int i = 1; i <= 9; i++) { // line 10
+    System.out.print(i + " | ");
+    for (int j = 1; j <= 9; j++) {
+        System.out.printf("%4d", i * j);
+    }
+
+    System.out.println();
+}
+
+/*
+The code above produces a 9x9 multiplication table as a grid with a top row
+of column labels and a left column of row labels.
+
+6: Causes j to iterate from 1 to 9 inclusive.
+7: Prints the digits 1 through 9 as the top row of column headers.
+8: Prints a vertical line to separate the column headers from the column body.
+
+10: Causes i to iterate from 1 to 9 inclusive.
+11: Prints the current row heading.
+    This happens on every iteration of the outer loop.
+12: Causes j to iterate from 1 to 9 inclusive.
+13: Prints the multiples of i for the current row, by multiplying i and j.
+16: Prints a line break for a new row.
+*/

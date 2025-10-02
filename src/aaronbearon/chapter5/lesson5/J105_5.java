@@ -2,13 +2,18 @@ package aaronbearon.chapter5.lesson5;
 
 import java.util.Scanner;
 
+/**
+ Lab 5, Part 5 - Palindrome Checker
+ Aaron Blum
+ */
 public class J105_5 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter a word, is it a palindrome? Press 0 to exit. ");
+        System.out.println("Enter a word, is it a palindrome? Press 0 to exit.");
         while (true) {
 
             // Get input and check for sentinel value.
+            System.out.print("palindrome? ");
             String s = input.nextLine();
             if (s.equals("0")) {
                 break;
@@ -45,6 +50,8 @@ public class J105_5 {
             } else {
                 System.out.println("No.");
             }
+
+            System.out.println("=======================================================");
         }
 
         System.out.println("Thank you!");
