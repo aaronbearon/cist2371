@@ -1,0 +1,89 @@
+Midterm Project - Summary
+Aaron Blum
+
+Part 1 - Calculating Sales
+    There are 5 products each with their own unit price. Each product is sold a specific number of times.
+    The program will display each product total sale and the total sales of all the products.
+    Use a sentinel value of 0 to exit the program.
+
+    Rules:
+        Product 1: $2.98
+        Product 2: $4.50
+        Product 3: $9.98
+        Product 4: $4.49
+        Product 5: $6.87
+
+    Input:
+        Product number: 3
+        Quantity sold: 2
+        Product number: 5
+        Quantity sold: 10
+        Product number: 0
+
+    Output:
+        $19.96 for 2 units of product 3.
+        $68.70 for 10 units of product 5.
+        $88.66 in total.
+
+Part 2 - Account Saving Checking
+    Input the current status of a bank account to include the following:
+    Account number, checking vs. savings, current balance, minimum balance.
+    Compute next month's balance based on the following rules.
+    Display next month's account status.
+
+    Rules:
+        If minimum balance isn't maintained:
+            -$10 from savings
+            -$25 from checking
+        If balance is met, and <= $5000 over minimum:
+            +4% to savings.
+            +3% to checking.
+        If balance is >= $5000 over minimum:
+            +4% to savings.
+            +5% to checking.
+
+    Input:
+        Account number: 87324
+        Account type: C
+        Minimum balance $: 1500
+        Current balance $: 7689
+
+    Output:
+        Account number: 87324
+        Account type: Checking
+        Current balance: $7689
+        New balance: $8073.45
+
+    Input:
+        Account number: 873
+        Account type: S
+        Minimum balance $: 1000
+        Current balance $: 800
+
+    Output:
+        Account number: 873
+        Account type: Savings
+        Current balance: $800
+        New balance: $790
+
+Part 3 - Parking Charges
+    Input the number of hours each customer parks.
+    Compute and display each customer's charge according to the rules below.
+    Display a running total that updates with each customer.
+    Use a sentinel value of 0 to exit the program.
+
+    Rules:
+        <= 3 hours: $2.00
+        3-19 hours: $2.00 + 0.50 per (hours - 3)
+         >19 hours: $10.00
+
+    Input:
+        Customer 1 Hours: 7.25
+        Customer 2 Hours: 4
+        Customer 3 Hours: 0
+
+    Output:
+        Customer 1: $4.50
+        Total: $4.50
+        Customer 2: $2.50
+        Total: $7.00
