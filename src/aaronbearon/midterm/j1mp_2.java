@@ -4,76 +4,77 @@ import java.util.Scanner;
 
 public class j1mp_2 {
     public static void main(String[] args) {
+        // Prompt the user with info.
         Scanner input = new Scanner(System.in);
         System.out.println("Please fill in the following fields:");
         System.out.println("customer #, account type, minimum balance, and current balance.");
+
+        // Input all the data.
         System.out.print("Customer #: ");
         int n = input.nextInt();
         System.out.println("Account type -");
         System.out.print("type S for savings or C for checking: ");
         String type;
         while (true) {
-            type = input.next();
-            if ((type.toUpperCase()).equals("S") || (type.toUpperCase()).equals("C")) {
+            String in = input.next().toUpperCase();
+            if (in.equals("S")) {
+                type = "Savings";
                 break;
             }
-
+            if (in.equals("C")) {
+                type = "Checking";
+                break;
+            }
             System.out.println("Error, invalid input, try again.");
-        }
-
-        if ((type.toUpperCase()).equals("S")) {
-            type = "Savings";
-        }
-
-        if ((type.toUpperCase()).equals("C")) {
-            type = "Checking";
         }
 
         System.out.print("Minimum balance: ");
         int minBalance = input.nextInt();
         System.out.print("Current balance: ");
         int currentBalance = input.nextInt();
-        int newBalance = 0;
-        int percent = 0;
+
+        // Do the math to compute next balance.
+        int newBalance;
         switch (type) {
             case "Savings":
                 if (currentBalance >= minBalance) {
-                    percent = 4;
+                    newBalance = (int) Math.round((double) currentBalance * 1.04);
                 } else {
                     newBalance = currentBalance - 10;
                 }
                 break;
             case "Checking":
                 if (currentBalance - 5000 > minBalance) {
-                    percent = 5;
+                    newBalance = (int) Math.round((double) currentBalance * 1.05);
                 } else if (currentBalance >= minBalance) {
-                    percent = 3;
+                    newBalance = (int) Math.round((double) currentBalance * 1.03);
                 } else {
                     newBalance = currentBalance - 25;
                 }
                 break;
             default:
                 System.out.println("Unknown error!");
+                System.exit(1);
+                return;
         }
 
+        // Pretty print nice results.
+        final int padding = 20;
         System.out.println();
         System.out.println("Customer #          |Account type        |Current Balance     |New balance         ");
         System.out.println("--------------------+--------------------+--------------------+--------------------");
-        format(n + "");
-        format(type + "");
-        format("$" + currentBalance + "");
-        if (currentBalance >= minBalance) {
-            System.out.printf("$%.2f", currentBalance * (100 + percent) / 100.0);
-        } else {
-            System.out.print("$" + newBalance);
-        }
+        printPadded(padding, String.valueOf(n));
+        printPadded(padding, type);
+        printPadded(padding, "$" + currentBalance);
+        System.out.print("$" + newBalance);
 
         System.out.println();
     }
 
-    public static void format(String buf) {
+    // Print a cell of the grid padded out to the length pad.
+    public static void printPadded(int pad, String buf) {
         String newBuf = buf;
-        for (int i = 0; i < 20 - buf.length(); i++) {
+        for (int i = 0; i < pad - buf.length(); i++) {
             newBuf += " ";
         }
         System.out.print(newBuf + "|");
