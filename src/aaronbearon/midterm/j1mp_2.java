@@ -34,20 +34,20 @@ public class j1mp_2 {
         int currentBalance = input.nextInt();
 
         // Do the math to compute next balance.
-        int newBalance;
+        double newBalance;
         switch (type) {
             case "Savings":
                 if (currentBalance >= minBalance) {
-                    newBalance = (int) Math.round((double) currentBalance * 1.04);
+                    newBalance = currentBalance * 104 / 100.0;
                 } else {
                     newBalance = currentBalance - 10;
                 }
                 break;
             case "Checking":
                 if (currentBalance - 5000 > minBalance) {
-                    newBalance = (int) Math.round((double) currentBalance * 1.05);
+                    newBalance = currentBalance * 105 / 100.0;
                 } else if (currentBalance >= minBalance) {
-                    newBalance = (int) Math.round((double) currentBalance * 1.03);
+                    newBalance = currentBalance * 103 / 100.0;
                 } else {
                     newBalance = currentBalance - 25;
                 }
@@ -66,7 +66,7 @@ public class j1mp_2 {
         printPadded(padding, String.valueOf(n));
         printPadded(padding, type);
         printPadded(padding, "$" + currentBalance);
-        System.out.print("$" + newBalance);
+        System.out.printf("$%.2f", newBalance);
 
         System.out.println();
     }
