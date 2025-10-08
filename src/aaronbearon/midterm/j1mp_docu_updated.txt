@@ -1,0 +1,119 @@
+Part 1 - Calculating Sales
+
+1. User Input
+
+- int product (1-5)
+- int count (>0)
+
+2. Algorithm
+
+Initialization and Setup
+- Initialize int totalPrice to 0 cents.
+- Prompt the user for the initial product (or sentinel).
+    - Validate input with inputProduct() function.
+
+Processing Loop
+- Start a while loop that runs until product is 0.
+- Each item
+    - Prompt for count.
+        - Validate input with inputCount() function.
+    - Use a switch statement on product (1-5) to look up itemPrice.
+    - Calculate currentPrice = itemPrice  * count.
+    - Add currentPrice to totalPrice.
+    - Prompt for the next product (or sentinel).
+
+Display results
+- Print totalPrice.
+
+3. Output:
+
+- int totalPrice (in cents, but format to look like dollars and cents)
+
+------------------------------------------------------------------------------
+
+Part 2 - Account Savings Checking
+
+1. User Input
+
+- int accountNumber
+- String accountType
+- int minimumBalance
+- int currentBalance
+
+2. Algorithm
+
+- Initialization and Setup
+    - Prompt the user to enter the accountNumber, accountType ('S' or 'C'), minBalance, and currentBalance.
+    - Validate accountType input using a loop to ensure it's 'S' or 'C'.
+
+- Compute next balance
+    1.  If accountType is "Savings"
+        -   If currentBalance >= minimumBalance:
+            -   newBalance = currentBalance * 1.04
+        -   Else (Balance < minimumBalance):
+            -   newBalance = currentBalance - 10.00
+
+    2.  Else If accountType is "Checking"
+        -   If currentBalance > (minimumBalance + 5000.00):
+            -   newBalance = currentBalance * 1.05
+        -   Else If currentBalance >= minimumBalance:
+            -   newBalance = currentBalance * 1.03
+        -   Else (Balance < minimumBalance):
+            -   newBalance = currentBalance - 25.00
+
+    3.  Else (Invalid Account Type):
+        -   Print "Unknown error!" and exit the program.
+
+- Display Results
+    - Print a formatted table with a header and a separator line.
+    - Use a custom padding function line up columns.
+
+3. Output
+    - int customerNumber
+    - String accountType
+    - int currentBalance (printed with leading $)
+    - double newBalance (printed with leading $ and trailing cents)
+
+------------------------------------------------------------------------------
+
+Part 3 - Parking Charges
+
+1. User Input
+    - double hours (Sentinel value to end input: 0)
+
+2. Algorithm
+
+- Initialization and Setup
+    - Initialize int total to 0 (to store total receipts in cents).
+
+- Processing Loop
+    - Loop indefinitely, identified by Customer i.
+    - Prompt the user for the next hours.
+        - Validate that input hours is between 0 and 24 (inclusive) using a loop.
+        - If hours is 0, exit the loop (sentinel).
+
+    - Calculate fee
+        - Convert hours to an integer representing whole or partial hours
+            - int intHours = (int) Math.ceil(hours).
+
+        - If intHours < 3:
+            - int current = 200 ($2.00)
+
+        - Else If intHours > 19: (The maximum charge limit)
+            - int current = 1000 ($10.00 - max charge)
+
+        - Else (intHours is between 3 and 19):
+            - Calculate the charge: int current = 200 + 50 * (intHours - 3)
+
+    - Update and Display:
+        - Add current to total.
+        - Display current and total charges.
+
+    - Loop back to top (for Customer i+1)
+
+- Display results
+    - Display the final total
+
+3. Output
+    - double current / 100.0 (for each customer) (leading $ and trailing cents)
+    - double total / 100.0 (running and final total) (leading $ and trailing cents)

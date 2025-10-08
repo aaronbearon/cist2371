@@ -1,0 +1,115 @@
+Part 1 - Calculating Sales
+
+1. User Input
+
+- int productNumber
+- int quantitySold
+
+2. Algorithm
+
+Initialization and Setup
+- Initialize double totalRetailValue to 0.0.
+- Prompt the user for the initial productNumber (or sentinel).
+
+Processing Loop
+- Start a while loop that runs until productNumber is 0.
+- Each item
+    - Prompt for quantitySold.
+    - Use a switch statement on productNumber (1-5) to look up the item price.
+    - Calculate currentRetailValue = price * quantitySold.
+    - Add currentRetailValue to totalRetailValue.
+    - Prompt for the next productNumber (or sentinel).
+
+Display results
+- Print totalRetailValue.
+
+3. Output:
+
+- double totalRetailValue
+
+------------------------------------------------------------------------------
+
+Part 2 - Account Saving Checking
+
+1. User Input
+
+- int accountNumber
+- char accountType
+- double minimumBalance
+- double currentBalance
+
+2. Algorithm
+
+- Initialization and Setup
+    - Prompt the user to enter accountNumber, accountType, minimumBalance, and currentBalance.
+    - Validate all inputs.
+
+- Compute next balance
+    1.  If accountType is 's' OR 'S' (Savings):
+        -   If currentBalance < minimumBalance:
+            -   newBalance = currentBalance - 10.00
+        -   Else (Balance >= minimumBalance):
+            -   newBalance = currentBalance * 1.04
+
+    2.  Else If accountType is 'c' OR 'C' (Checking):
+        -   If currentBalance < minimumBalance:
+            -   newBalance = currentBalance - 25.00
+        -   Else (Balance >= minimumBalance):
+            -   If currentBalance <= (minimumBalance + 5000.00):
+            -   newBalance = currentBalance * 1.03
+            -   Else:
+            -   newBalance = currentBalance * 1.05
+    3.  Else (Invalid Account Type):
+        -   Print "Error: Invalid account type."
+
+- Display Results
+
+3. Output
+    - int accountNumber
+    - char accountType
+    - double currentBalance
+    - double newBalance
+
+------------------------------------------------------------------------------
+
+Part 3 - Parking Charges
+
+1. User Input
+    - double hoursParked (Sentinel value to end input: 0)
+
+2. Algorithm
+
+- Initialization and Setup
+    - Initialize double totalReceipts to 0.0.
+
+- Processing Loop
+    - Prompt the user for the next hoursParked (or exit on sentinel).
+    - Initialize double customerCharge to 0.0.
+
+    - Calculated fee
+        - If hoursParked <= 3.0:
+            - customerCharge = 2.00
+
+        - Else (hoursParked > 3.0):
+            - Calculate the excess time beyond the first three hours:
+                - double excessHours = hoursParked - 3.0
+            - Calculate the additional cost for the excess hours:
+                - customerCharge = $2 + Math.ceil(excessHours) * $0.50
+
+        - Maximum Charge:
+            - If customerCharge > 10.00:
+                - customerCharge = 10.00
+
+    - Update and Display:
+        - Add customerCharge to totalReceipts.
+        - Print "Charge for current customer:", customerCharge.
+        - Print "Running total receipts:", totalReceipts.
+
+    - Loop back to top
+
+- Display results
+    - Print "Final total receipts for yesterday:", totalReceipts.
+
+3. Output
+    - double customerCharge (for each customer)
+    - double totalReceipts (running and final total)

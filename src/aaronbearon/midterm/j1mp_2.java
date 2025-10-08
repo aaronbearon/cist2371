@@ -11,18 +11,18 @@ public class j1mp_2 {
 
         // Input all the data.
         System.out.print("Account #: ");
-        int n = input.nextInt();
+        int accountNumber = input.nextInt();
         System.out.println("Account type -");
         System.out.print("type S for savings or C for checking: ");
-        String type;
+        String accountType;
         while (true) {
             String in = input.next().toUpperCase();
             if (in.equals("S")) {
-                type = "Savings";
+                accountType = "Savings";
                 break;
             }
             if (in.equals("C")) {
-                type = "Checking";
+                accountType = "Checking";
                 break;
             }
             System.out.println("Error, invalid input, try again.");
@@ -35,7 +35,7 @@ public class j1mp_2 {
 
         // Do the math to compute next balance.
         double newBalance;
-        switch (type) {
+        switch (accountType) {
             case "Savings":
                 if (currentBalance >= minBalance) {
                     newBalance = currentBalance * 104 / 100.0;
@@ -63,8 +63,8 @@ public class j1mp_2 {
         System.out.println();
         System.out.println("Account #           |Account type        |Current Balance     |New balance         ");
         System.out.println("--------------------+--------------------+--------------------+--------------------");
-        printPadded(padding, String.valueOf(n));
-        printPadded(padding, type);
+        printPadded(padding, String.valueOf(accountNumber));
+        printPadded(padding, accountType);
         printPadded(padding, "$" + currentBalance);
         System.out.printf("$%.2f", newBalance);
 
