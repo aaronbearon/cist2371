@@ -7,10 +7,10 @@ public class j1mp_2 {
         // Prompt the user with info.
         Scanner input = new Scanner(System.in);
         System.out.println("Please fill in the following fields:");
-        System.out.println("customer #, account type, minimum balance, and current balance.");
+        System.out.println("account #, account type, minimum balance, and current balance.");
 
         // Input all the data.
-        System.out.print("Customer #: ");
+        System.out.print("Account #: ");
         int n = input.nextInt();
         System.out.println("Account type -");
         System.out.print("type S for savings or C for checking: ");
@@ -61,7 +61,7 @@ public class j1mp_2 {
         // Pretty print nice results.
         final int padding = 20;
         System.out.println();
-        System.out.println("Customer #          |Account type        |Current Balance     |New balance         ");
+        System.out.println("Account #           |Account type        |Current Balance     |New balance         ");
         System.out.println("--------------------+--------------------+--------------------+--------------------");
         printPadded(padding, String.valueOf(n));
         printPadded(padding, type);
