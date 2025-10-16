@@ -2,6 +2,10 @@ package aaronbearon.chapter6.lesson6;
 
 import java.util.Scanner;
 
+/**
+ * Compute total parking charges.
+ * Aaron Blum, Java Lab 6.
+ */
 public class J106_33 {
     public static void main(String[] args) {
         printInstructions();

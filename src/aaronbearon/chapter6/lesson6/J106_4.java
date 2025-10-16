@@ -2,6 +2,10 @@ package aaronbearon.chapter6.lesson6;
 
 import java.util.Scanner;
 
+/**
+ * Check whether input is palindrome.
+ * Aaron Blum, Java Lab 6.
+ */
 public class J106_4 {
     public static void main(String[] args) {
         System.out.print("Enter a word, is it a palindrome? ");
@@ -9,8 +13,12 @@ public class J106_4 {
         String s = input.nextLine();
 
         s = delPunctuation(s);
-        s = delSpaces(s);
         String r = reverse(s);
+
+        System.out.println(s);
+        System.out.println(r);
+        s = delSpaces(s);
+        r = reverse(s);
 
         System.out.println(s);
         System.out.println(r);

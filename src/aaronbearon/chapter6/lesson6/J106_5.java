@@ -2,6 +2,10 @@ package aaronbearon.chapter6.lesson6;
 
 import java.util.Scanner;
 
+/**
+ * Print calendar for specific year and month.
+ * Aaron Blum, Java Lab 6.
+ */
 public class J106_5 {
     public static void main(String[] args) {
         // Input a year since 1800 and a month 12.

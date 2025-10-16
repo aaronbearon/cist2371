@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * Compute checking/savings account balance.
- * Aaron Blum, Java Lesson 6.
+ * Aaron Blum, Java Lab 6.
  */
 public class J106_32 {
     public static void main(String[] args) {
