@@ -22,7 +22,7 @@ public class J106_33 {
     }
 
     /** Loop and enter each parking ticket. */
-    public static int processEachCustomer(Scanner input) {
+    private static int processEachCustomer(Scanner input) {
         int total = 0;
 
         for (int i = 1; true; i++) {
