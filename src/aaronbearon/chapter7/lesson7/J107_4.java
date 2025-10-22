@@ -13,13 +13,13 @@ public class J107_4 {
         while (true) {
             System.out.print("Guess one character (lowercase) in my array: ");
             char ch = input.next().charAt(0);
-            validateInput(ch);
-            if (ch == 'c') {
+            if (ch == '-' || ch == '0') {
                 break;
             }
 
+            validateInput(ch);
+
             int spots = search(ch, indices, filling, key);
-            printProcessArray(ch, indices, filling);
             printResults(ch, spots, indices, filling, key);
             resetIndices(indices);
         }
@@ -53,25 +53,18 @@ public class J107_4 {
         return j;
     }
 
-    public static void printProcessArray(char c, int[] indices, char[] filling) {
-        for (int i = indices.length - 1; i >= 0; i--) {
-            if (indices[i] != 0) {
-                filling[i] = c;
-            }
-        }
-
-        System.out.println("    1 2 3 4 5 6 7 8 9 0");
-    }
-
     public static void printResults(char c, int spots, int[] indices, char[] filling, char[] key) {
+        System.out.println("    1 2 3 4 5 6 7 8 9 0");
         System.out.print("My array: ");
         for (int i = 0; i < filling.length; i++) {
             System.out.print(filling[i]);
         }
 
+        System.out.println();
+
         if (spots != 0) {
             System.out.print("Good: " + c + " is in ");
-            for (int i = spots; i >= 0; i--) {
+            for (int i = spots - 1; i >= 0; i--) {
                 System.out.print(indices[i]);
 
                 if (i != 0) {
