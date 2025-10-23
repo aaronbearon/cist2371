@@ -9,9 +9,11 @@ public class J107_1 {
     public static char[] genChar() {
         char[] array = new char[20];
         for (int i = 0; i < array.length; i++) {
-            array[i] = (char) ('A' + (int) (Math.random() * 52));
-            if (array[i] > 'Z') {
-                array[i] = (char) (((array[i] - 26) - 'A') + 'a');
+            int rand = (int) (Math.random() * 52);
+            if (rand < 26) {
+                array[i] = (char) (rand + 'A');
+            } else {
+                array[i] = (char) (rand + 'a' - 26);
             }
         }
 
@@ -19,9 +21,8 @@ public class J107_1 {
     }
 
     public static void printChar(char[] array) {
-        System.out.println();
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i]);
+        for (char c : array) {
+            System.out.print(c + " ");
         }
 
         System.out.println();
