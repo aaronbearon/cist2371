@@ -1,6 +1,6 @@
 package aaronbearon.chapter7.interview;
 
-public class J107_1 {
+public class J107_12 {
     public static void main(String[] args) {
         char[] array = genChar();
         printChar(array);
