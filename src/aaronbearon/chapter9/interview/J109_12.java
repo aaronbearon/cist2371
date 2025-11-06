@@ -2,10 +2,10 @@ package aaronbearon.chapter9.interview;
 
 import java.util.Scanner;
 
-public class J109_11 {
+public class J109_12 {
     public static void main(String[] args) {
-        Person me = new Person();
         Scanner input = new Scanner(System.in);
+        PERSON me = new PERSON();
 
         System.out.print("Enter your name: ");
         me.setName(input.nextLine());
@@ -17,7 +17,7 @@ public class J109_11 {
     }
 }
 
-class Person {
+class PERSON {
     private String name;
 
     private String phone;
