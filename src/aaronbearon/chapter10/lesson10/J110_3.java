@@ -39,24 +39,13 @@ class Euler {
     }
 
     private BigDecimal calculateEuler() {
-        BigDecimal euler = new BigDecimal("0.0");
-        for (int i = 0; i <= precision; i++) {
-            if (i == 0) {
-                euler = euler.add(BigDecimal.valueOf(1));
-            } else {
-                euler = euler.add(BigDecimal.valueOf(1).divide((getFactorial(i)), 20, RoundingMode.HALF_UP));
-            }
+        BigDecimal euler = new BigDecimal("1.0");
+        BigDecimal divisor = new BigDecimal("1.0");
+        for (int i = 1; i <= precision; i++) {
+            divisor = divisor.multiply(BigDecimal.valueOf(i));
+            euler = euler.add(BigDecimal.valueOf(1).divide(divisor, 20, RoundingMode.HALF_UP));
         }
 
         return euler;
-    }
-
-    private BigDecimal getFactorial(int i) {
-        BigDecimal factors = new BigDecimal("1.0");
-        for (int j = 1; j <= i; j++) {
-            factors = factors.multiply(BigDecimal.valueOf(j));
-        }
-
-        return factors;
     }
 }
