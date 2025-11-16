@@ -18,6 +18,8 @@ public class J110_3 {
 class Euler {
     private int precision;
 
+    private static final BigDecimal ONE = BigDecimal.valueOf(1);
+
     Euler() {
         this(1);
     }
@@ -35,15 +37,11 @@ class Euler {
     }
 
     BigDecimal getEuler() {
-        return calculateEuler();
-    }
-
-    private BigDecimal calculateEuler() {
-        BigDecimal euler = new BigDecimal("1.0");
-        BigDecimal divisor = new BigDecimal("1.0");
+        BigDecimal euler = ONE;
+        BigDecimal divisor = ONE;
         for (int i = 1; i <= precision; i++) {
             divisor = divisor.multiply(BigDecimal.valueOf(i));
-            euler = euler.add(BigDecimal.valueOf(1).divide(divisor, 20, RoundingMode.HALF_UP));
+            euler = euler.add(ONE.divide(divisor, 20, RoundingMode.HALF_UP));
         }
 
         return euler;
