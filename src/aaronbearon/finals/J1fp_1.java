@@ -4,25 +4,20 @@ public class J1fp_1 {
     /**
      * Hard-coded sample data for the RetailItem class
      */
-    private static final String[] NAMES = {"Jacket", "Designer Jeans", "Shirt"};
-    private static final int[] COUNTS = {12, 40, 20};
-    private static final double[] PRICES = {59.95, 34.95, 24.95};
+    public static final RetailItem[] INVENTORY = {
+            new RetailItem("Jacket", 12, 59.95),
+            new RetailItem("Designer Jeans", 40, 34.95),
+            new RetailItem("Shirt", 20, 24.95)
+    };
 
     /**
-     * Stores the data in the item objects and print them
-     *
-     * @param args N/A
+     * Prints out the store inventory
      */
     public static void main(String[] args) {
         System.out.printf("Inventory:%n%n");
-        RetailItem[] items = new RetailItem[3];
-        for (int i = 0; i < 3; i++) {
-            items[i] = new RetailItem();
-            items[i].setDescription(NAMES[i]);
-            items[i].setUnitsOnHand(COUNTS[i]);
-            items[i].setPrice(PRICES[i]);
+        for (RetailItem retailItem : INVENTORY) {
             System.out.printf("%s count: %d, $%.2f each.%n",
-                    items[i].getDescription(), items[i].getUnitsOnHand(), items[i].getPrice());
+                    retailItem.getDescription(), retailItem.getUnitsOnHand(), retailItem.getPrice());
         }
     }
 }

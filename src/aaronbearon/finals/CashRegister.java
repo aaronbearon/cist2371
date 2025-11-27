@@ -8,15 +8,6 @@ public class CashRegister {
     private int quantity;
 
     /**
-     * Creates a register with a certain item type with default quantity 1
-     *
-     * @param item Item object
-     */
-    public CashRegister(RetailItem item) {
-        this(item, 1);
-    }
-
-    /**
      * Creates a register with a certain item type and quantity
      *
      * @param item     Item object
@@ -70,5 +61,9 @@ public class CashRegister {
      */
     public double getTotal() {
         return this.getSubtotal() + this.getTax();
+    }
+
+    public SalesReceipt getReceipt() {
+        return new SalesReceipt(item, getQuantity(), getSubtotal(), getTax(), getTotal());
     }
 }
