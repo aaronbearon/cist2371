@@ -1,0 +1,60 @@
+Final Project - Summary
+Aaron Blum
+
+Part 1 - RetailItem Class
+    A retail grocery store has different types of items.
+    Each item type, has a name, unit price, and a certain number of copies on the shelf.
+    The program will create several sample item objects based on the RetailItem class,
+        store appropriate data in them, and print them.
+
+    Rules:
+        Item object:
+            Name (String)
+            Count (int)
+            Price (double)
+
+    Input:
+        "Jacket", 12, 59.95
+        "Designer Jeans", 40, 34.95
+        "Shirt", 20, 24.95
+
+    Output:
+        Print the data
+
+Part 2 - CashRegister Class
+    Buy an item created with the RetailItem class.
+    The program should store the unit price, quantity, subtotal, tax, and total in a CashRegister object and print them.
+
+    Rules:
+        subtotal = quantity * unit price
+        tax = subtotal * 0.06
+        total = subtotal + tax
+
+    Input:
+        item (with price $50.00)
+        quantity 2
+
+    Output:
+        Subtotal: $100.00
+        Sales Tax: $6.00
+        Total $53.00
+
+Part 3 - Sales Receipt Class
+    Buy an item created with the RetailItem class.
+    The program should use an object of the SalesReceipt class to make a file with the data mentioned in part 2.
+
+    Rules:
+        See part 2
+
+    Input:
+        See part 2
+
+    Output:
+        SALES RECEIPT
+        Unit Price: $50.00
+        Quantity: 2
+        Subtotal: $100.00
+        Sales Tax: $6.00
+        Total $53.00
+
+        Write all that to an output file.

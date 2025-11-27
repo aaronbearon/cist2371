@@ -1,0 +1,93 @@
+Part 1 - RetailItem class
+
+1. Class Creation
+
+Private Fields
+- String Description
+- int unitsOnHand
+- double Price
+
+One constructor for all three fields.
+One mutator for each field.
+One accessor for each field.
+
+2. Algorithm
+
+Sample data should be stored like this:
+
++--------------------+--------------------+--------------------+--------------------+
+|                    |     Description    |    Units on Hand   |        Price       |
++--------------------+--------------------+--------------------+--------------------+
+|       Item #1      |Jacket              |         12         |       $59.95       |
++--------------------+--------------------+--------------------+--------------------+
+|       Item #2      |Designer Jeans      |         40         |       $34.95       |
++--------------------+--------------------+--------------------+--------------------+
+|       Item #3      |Shirt               |         20         |       $24.95       |
++--------------------+--------------------+--------------------+--------------------+
+
+Implementation
+
+Create 3 arrays, one for each type of field.
+Use a for loop to assign the correct data to the correct objects and fields.
+For example: description[i], unitsOnHand[i], price[i] in the for loop body.
+
+3. Output
+
+Print by object: name (Description), quantity (Units on Hand), price (Price)
+
+------------------------------------------------------------------------------
+
+Part 2 - Cash Register Class
+
+1. Class Creation
+
+Private fields
+- item (object of the RetailItem class)
+- int quantity
+
+One constructor for both fields
+Accessor methods
+- getSubtotal (return quantity * item.getPrice())
+- getTax (return subtotal * 0.06)
+- getTotal (return subtotal * tax)
+
+2. Algorithm
+Create a RetailItem item with sample data
+Ask the user to enter the quantity (number of items to buy from that item object)
+Print results
+
+3. Output:
+
+- subtotal
+- tax
+- total
+
+------------------------------------------------------------------------------
+
+Part 3 - Sales Receipt Class
+
+1. Class Creation
+
+Private fields
+- RetailItem item
+- int quantity
+- double subtotal
+- double tax
+- double total
+
+One constructor for all fields
+PrintTo method (for printing to a file)
+
+2. Algorithm
+Create a RetailItem item with sample data
+Ask the user to enter the quantity (number of items to buy from that item object)
+Write results to a file
+
+3. Output:
+
+SALES RECEIPT
+Unit Price: $50.00
+Quantity: 2
+Subtotal: $100.00
+Sales Tax: $6.00
+Total $53.00
