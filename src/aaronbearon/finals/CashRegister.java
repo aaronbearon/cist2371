@@ -1,6 +1,13 @@
 package aaronbearon.finals;
 
+/**
+ * Aaron Blum
+ * Java Final Project CashRegister
+ * 2025-11-27
+ */
 public class CashRegister {
+    private static final double TAX_RATE = 0.06;
+
     /**
      * Stores the item type and the quantity
      */
@@ -51,7 +58,7 @@ public class CashRegister {
      * @return 6% of the base price of the items
      */
     public double getTax() {
-        return this.getSubtotal() * 0.06;
+        return this.getSubtotal() * TAX_RATE;
     }
 
     /**

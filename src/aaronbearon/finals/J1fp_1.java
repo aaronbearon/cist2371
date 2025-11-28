@@ -1,8 +1,13 @@
 package aaronbearon.finals;
 
+/**
+ * Aaron Blum
+ * Java Final Project Part 1
+ * 2025-11-27
+ */
 public class J1fp_1 {
     /**
-     * Hard-coded sample data for the RetailItem class
+     * Hard-coded data for the RetailItem class
      */
     public static final RetailItem[] INVENTORY = {
             new RetailItem("Jacket", 12, 59.95),

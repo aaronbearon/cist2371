@@ -2,9 +2,14 @@ package aaronbearon.finals;
 
 import java.util.Scanner;
 
+/**
+ * Aaron Blum
+ * Java Final Project Part 2
+ * 2025-11-27
+ */
 public class J1fp_2 {
     /**
-     * Program to buy aa certain amount of a specific item.
+     * Program to buy a certain amount of a specific item.
      */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);

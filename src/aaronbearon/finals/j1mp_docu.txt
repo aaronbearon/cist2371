@@ -3,9 +3,9 @@ Part 1 - RetailItem class
 1. Class Creation
 
 Private Fields
-- String Description
+- String description
 - int unitsOnHand
-- double Price
+- double price
 
 One constructor for all three fields.
 One mutator for each field.
@@ -53,6 +53,7 @@ Accessor methods
 
 2. Algorithm
 Create a RetailItem item with sample data
+Create a cashRegister object
 Ask the user to enter the quantity (number of items to buy from that item object)
 Print results
 
@@ -85,9 +86,11 @@ Write results to a file
 
 3. Output:
 
+(In a file)
+
 SALES RECEIPT
 Unit Price: $50.00
 Quantity: 2
 Subtotal: $100.00
 Sales Tax: $6.00
-Total $53.00
+Total $106.00

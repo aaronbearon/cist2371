@@ -1,0 +1,120 @@
+Part 1 - RetailItem class
+
+1. Class Creation
+
+Private Fields
+- final String description
+- int unitsOnHand
+- final double price
+
+One constructor for all three fields. (ensures unitsOnHand and price are non-negative)
+Mutator for setUnitsOnHand. (ensures non-negative)
+One accessor for each field.
+
+2. Algorithm
+
+The data should be stored like this:
+
++--------------------+--------------------+--------------------+--------------------+
+|                    |     description    |     unitsOnHand    |        price       |
++--------------------+--------------------+--------------------+--------------------+
+|    INVENTORY[0]    |Jacket              |         12         |        59.95       |
++--------------------+--------------------+--------------------+--------------------+
+|    INVENTORY[1]    |Designer Jeans      |         40         |        34.95       |
++--------------------+--------------------+--------------------+--------------------+
+|    INVENTORY[2]    |Shirt               |         20         |        24.95       |
++--------------------+--------------------+--------------------+--------------------+
+
+Implementation
+
+Create a RetailItem[] array name INVENTORY with the fields as above.
+    It should be public static final
+Use an enhanced for loop to print each object's fields.
+
+3. Output
+
+Use printf for this section. Below print:
+Inventory
+
+Jacket count: 12, $59.95 each.
+Designer Jeans count: 40, $34.95 each.
+Shirt count: 20, $24.95 each.
+
+------------------------------------------------------------------------------
+
+Part 2 - Cash Register Class
+
+1. Class Creation
+
+Constant
+- TAX_RATE = 0.06
+
+Private fields
+- final item (object of the RetailItem class)
+- int quantity
+
+One constructor for both fields
+Mutator for quantity (ensures non-negative)
+Accessor methods
+- int getQuantity (return quantity)
+- double getSubtotal (return quantity * item.getPrice())
+- double getTax (return subtotal * TAX_RATE)
+- double getTotal (return subtotal * tax)
+- SalesReceipt getReceipt (return a new SalesReceipt object)
+    - Will be mentioned in part 3.
+
+2. Algorithm
+Create a RetailItem item with the same data as INVENTORY[2] from part 1
+Create a cashRegister object name register.
+Ask the user to enter the quantity (number of items to buy from that item object)
+    using the description and price from the item object.
+Update quantity in register.
+Subtract that amount from item's unitsOnHand.
+The user's quantity can't be more than item's unitsOnHand.
+
+Print results
+
+3. Output:
+
+SALES RECEIPT
+Unit Price: $24.95
+Quantity: 3
+Subtotal: $74.85
+Sales Tax: $4.49
+Total: $79.34
+
+------------------------------------------------------------------------------
+
+Part 3 - Sales Receipt Class
+
+1. Class Creation
+
+Private fields (are all final)
+- RetailItem item
+- int quantity
+- double subtotal
+- double tax
+- double total
+
+One constructor for all fields
+PrintTo method (for printing to a file)
+    - Accepts an output stream.
+
+2. Algorithm
+Create a RetailItem item with sample data
+Ask the user to enter the quantity (number of items to buy from that item object)
+Use a CashRegister to buy the RetailItem and produce a SalesReceipt.
+Open a FileOutputStream to write to.
+Call SalesReceipt.printTo(fileOutputStream) to print to the file.
+Also debug print to System.out.
+
+3. Output:
+
+(In a file and on the console)
+
+SALES RECEIPT
+Unit Price: $50.00
+Quantity: 2
+Subtotal: $100.00
+Sales Tax: $6.00
+Total $106.00

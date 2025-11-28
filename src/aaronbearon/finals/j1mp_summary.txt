@@ -37,7 +37,7 @@ Part 2 - CashRegister Class
     Output:
         Subtotal: $100.00
         Sales Tax: $6.00
-        Total $53.00
+        Total $106.00
 
 Part 3 - Sales Receipt Class
     Buy an item created with the RetailItem class.
@@ -55,6 +55,6 @@ Part 3 - Sales Receipt Class
         Quantity: 2
         Subtotal: $100.00
         Sales Tax: $6.00
-        Total $53.00
+        Total $106.00
 
         Write all that to an output file.

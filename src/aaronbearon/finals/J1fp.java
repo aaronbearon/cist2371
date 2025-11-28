@@ -4,6 +4,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Aaron Blum
+ * Java Final Project Parts 1-3
+ * 2025-11-27
+ */
 public class J1fp {
     /**
      * Combines the three parts into one program

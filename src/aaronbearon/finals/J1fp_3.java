@@ -4,6 +4,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Aaron Blum
+ * Java Final Project Part 3
+ * 2025-11-27
+ */
 public class J1fp_3 {
     /**
      * Program to buy a certain amount of a specific item.

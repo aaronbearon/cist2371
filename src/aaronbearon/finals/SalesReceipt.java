@@ -3,6 +3,11 @@ package aaronbearon.finals;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+/**
+ * Aaron Blum
+ * Java Final Project SalesReceipt
+ * 2025-11-27
+ */
 public class SalesReceipt {
     private final RetailItem item;
     private final int quantity;

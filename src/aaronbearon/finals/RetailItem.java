@@ -1,5 +1,10 @@
 package aaronbearon.finals;
 
+/**
+ * Aaron Blum
+ * Java Final Project RetailItem
+ * 2025-11-27
+ */
 public class RetailItem {
     /**
      * Stores the name, count, and price of each item type
