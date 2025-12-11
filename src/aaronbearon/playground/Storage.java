@@ -1,43 +1,26 @@
 package aaronbearon.playground;
 
 public class Storage {
+    private static final int SIZE = 26;
+
     public static void main(String[] args) {
-        System.out.println();
-        String[][] grid = genGrid();
-        shuffleGrid(grid);
-        printGrid(grid);
+        String[] arr = genLine();
+        shuffleItems(arr);
+        collapseToGrid(arr);
     }
 
-    public static String[][] genGrid() {
-        final int SIZE = 26;
-        String[][] grid = new String[SIZE][SIZE];
+    public static String[] genLine() {
+        String[] line = new String[SIZE * SIZE];
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                grid[i][j] = ((char) (i + 'a')) + String.valueOf((char) (j + 'a'));
-            }
-        }
-
-        return grid;
-    }
-
-    public static void shuffleGrid(String[][] grid) {
-        String[] line = spreadGridToLine(grid);
-        shuffleLineItems(line);
-        collapseLineToGrid(grid, line);
-    }
-
-    public static String[] spreadGridToLine(String[][] grid) {
-        String[] line = new String[grid.length * grid[0].length];
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                line[i * grid[i].length + j] = grid[i][j];
+                line[i * SIZE + j] = ((char) (i + 'a')) + String.valueOf((char) (j + 'a'));
             }
         }
 
         return line;
     }
 
-    public static void shuffleLineItems(String[] line) {
+    public static void shuffleItems(String[] line) {
         for (int i = line.length - 1; i > 0; i--) {
             int j = (int) (Math.random() * (i + 1));
             String temp = line[i];
@@ -46,18 +29,19 @@ public class Storage {
         }
     }
 
-    public static void collapseLineToGrid(String[][] grid, String[] line) {
+    public static void collapseToGrid(String[] line) {
+        String[][] grid = new String[SIZE][SIZE];
         for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                grid[i][j] = line[i * grid[i].length + j];
-            }
+            System.arraycopy(line, i * grid[i].length, grid[i], 0, grid[i].length);
         }
+
+        printGrid(grid);
     }
 
     public static void printGrid(String[][] grid) {
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                System.out.print(grid[i][j] + " ");
+        for (String[] items : grid) {
+            for (String item : items) {
+                System.out.print(item + " ");
             }
 
             System.out.println();
