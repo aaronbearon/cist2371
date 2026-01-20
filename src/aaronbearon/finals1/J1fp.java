@@ -1,4 +1,4 @@
-package aaronbearon.finals;
+package aaronbearon.finals1;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -6,16 +6,29 @@ import java.util.Scanner;
 
 /**
  * Aaron Blum
- * Java Final Project Part 3
+ * Java Final Project Parts 1-3
  * 2025-11-27
  */
-public class J1fp_3 {
+public class J1fp {
     /**
-     * Program to buy a certain amount of a specific item.
+     * Combines the three parts into one program
      */
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
-        RetailItem item = J1fp_1.INVENTORY[2]; // Shirts
+        System.out.printf("Inventory:%n%n");
+        for (RetailItem retailItem : J1fp_1.INVENTORY) {
+            System.out.printf("%s count: %d, $%.2f each.%n",
+                    retailItem.getDescription(), retailItem.getUnitsOnHand(), retailItem.getPrice());
+        }
+
+        System.out.printf("%nWhich item do you want to buy? ");
+        int choice = input.nextInt();
+        if (choice < 1 || choice >= J1fp_1.INVENTORY.length) {
+            System.out.println("Error, invalid choice.");
+            System.exit(1);
+        }
+
+        RetailItem item = J1fp_1.INVENTORY[choice - 1]; // Jacket, Designer Jeans, or Shirt
         CashRegister register = new CashRegister(item, 0);
         System.out.printf("Each %s costs $%.2f. How many do you want? ", item.getDescription(), item.getPrice());
         register.setQuantity(input.nextInt());

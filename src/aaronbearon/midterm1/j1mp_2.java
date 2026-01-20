@@ -1,4 +1,4 @@
-package aaronbearon.midterm;
+package aaronbearon.midterm1;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package aaronbearon.finals;
+package aaronbearon.finals1;
 
 import java.util.Scanner;
 
