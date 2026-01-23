@@ -1,7 +1,6 @@
 package aaronbearon.chapter10_5;
 
 /**
- * Summary:
  * CIST 2372 Java 2, CRN 49043
  * Aaron Blum
  * Interview 1 Problem 2-1
@@ -26,7 +25,6 @@ public class J201_21 {
 }
 
 /*
- * Documentation:
  * Used for loop to handle the series appropriately.
  * Declared the sum outside the loop to print later.
  * Specified starting and ending number in loop header.
