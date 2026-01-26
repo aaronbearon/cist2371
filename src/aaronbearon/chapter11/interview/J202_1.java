@@ -23,7 +23,7 @@ class Shape {
 
     public double area() {
         System.out.println("Write code to calculate the area for each shape");
-        return 0.0; // default implementation }
+        return 0.0; // default implementation
     }
 }
 
