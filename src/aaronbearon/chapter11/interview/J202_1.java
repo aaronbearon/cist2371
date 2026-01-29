@@ -1,9 +1,10 @@
 package aaronbearon.chapter11.interview;
 
 public class J202_1 {
+    private static final String name = "Aaron";
+    private static final double width = 8, height = 7;
+
     public static void main(String[] args) {
-        String name = "Aaron";
-        double width = 8, height = 7;
         System.out.println("Width: " + width + "\r\nHeight: " + height);
         Rectangle r = new Rectangle(name, width, height);
         System.out.println("Area: " + r.area());
