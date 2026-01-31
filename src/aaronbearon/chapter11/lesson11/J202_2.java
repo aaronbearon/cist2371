@@ -1,5 +1,11 @@
 package aaronbearon.chapter11.lesson11;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 2
+ * Description: Use inheritance to link the classes correctly.
+ * Build the classes with the corresponding data and methods.
+ * Implement them to ensure that the test data works.
+ */
 public class J202_2 {
     public static void main(String[] args) {
         String creator = "Aaron";
@@ -15,9 +21,11 @@ public class J202_2 {
     }
 }
 
+/** Blueprint for all Shape objects including subclass objects */
 class Shape {
     private final String creator;
 
+    /** All shapes (including sub-shapes) are created here. */
     public Shape(String creator) {
         this.creator = creator;
     }
@@ -34,6 +42,7 @@ class Shape {
     }
 }
 
+/** Circle subclass based on Shape superclass */
 class Circle extends Shape {
     private final double radius;
 
@@ -41,6 +50,7 @@ class Circle extends Shape {
         this("None", radius);
     }
 
+    /** Overloaded Circle constructor */
     public Circle(String creator, double radius) {
         super(creator);
         this.radius = radius;
@@ -50,11 +60,13 @@ class Circle extends Shape {
         return radius;
     }
 
+    /** Specific Circle area calculation */
     @Override
     public double getArea() {
         return Math.PI * radius * radius;
     }
 
+    /** New implementation of Circle Object's built-in toString method. */
     @Override
     public String toString() {
         return String.format("%s%nRadius: %.1f cm%nArea  : %.2f cm^2",
@@ -62,6 +74,7 @@ class Circle extends Shape {
     }
 }
 
+/** Rectangle subclass based on Shape superclass */
 class Rectangle extends Shape {
     private final double width;
     private final double height;
@@ -70,6 +83,7 @@ class Rectangle extends Shape {
         this("None", width, height);
     }
 
+    /** Overloaded Rectangle constructor */
     public Rectangle(String creator, double width, double height) {
         super(creator);
         this.width = width;
@@ -84,11 +98,13 @@ class Rectangle extends Shape {
         return height;
     }
 
+    /** Specific Rectangle area calculation */
     @Override
     public double getArea() {
         return width * height;
     }
 
+    /** New implementation of Rectangle Object's built-in toString method. */
     @Override
     public String toString() {
         return String.format("%s%nWidth : %.1f cm%nHeight: %.1f cm%nArea  : %.2f cm^2",
@@ -96,6 +112,7 @@ class Rectangle extends Shape {
     }
 }
 
+/** Square subclass based on Rectangle superclass */
 class Square extends Rectangle {
     private final double side;
 
@@ -104,6 +121,7 @@ class Square extends Rectangle {
         this.side = side;
     }
 
+    /** Overloaded Square constructor */
     public Square(String creator, double side) {
         super(creator, side, side);
         this.side = side;
@@ -113,14 +131,22 @@ class Square extends Rectangle {
         return side;
     }
 
+    /** Specific Square area calculation */
     @Override
     public double getArea() {
         return side * side;
     }
 
+    /** New implementation of Square Object's built-in toString method. */
     @Override
     public String toString() {
         return String.format("%s%nSide: %.1f cm%nArea: %.2f cm^2",
                 getName(), getSide(), getArea());
     }
 }
+
+/*
+ * Implemented Shape's getName() method to print out the simple name of the class.
+ * For example, print out the literal "Rectangle" when calling Shape's getName()
+ *  method from the Rectangle's tpString() method.
+ */
