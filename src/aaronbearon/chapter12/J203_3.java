@@ -37,7 +37,11 @@ public class J203_3 {
             try {
                 System.out.print("Please enter your name: ");
                 String name = input.nextLine();
+
+                // Prevents names starting with a number
                 if (name.isEmpty() || (name.charAt(0) >= '0' && name.charAt(0) <= '9')) {
+                    // Required throw keyword
+                    // Exception caught in catch block below
                     throw new InputMismatchException();
                 }
 
@@ -63,3 +67,8 @@ public class J203_3 {
         }
     }
 }
+
+/*
+ * Changed the String name validation from part 2 into a try-catch block.
+ * This will (keyword) "throw" an exception handled in the catch block.
+ */

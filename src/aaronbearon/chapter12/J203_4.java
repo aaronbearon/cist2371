@@ -60,9 +60,15 @@ public class J203_4 {
         }
     }
 
+    /** Required throws keyword */
     public static void validateName(String name) throws InputMismatchException {
         if (name.isEmpty() || (name.charAt(0) >= '0' && name.charAt(0) <= '9')) {
             throw new InputMismatchException();
         }
     }
 }
+
+/*
+ * Modified the String name validation to call validateName()
+ * This method (keyword) "throws" an exception sent back to it's caller.
+ */
