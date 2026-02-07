@@ -3,6 +3,11 @@ package aaronbearon.chapter12;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 3 Part 2
+ * Description: Take the user's name and age just like Interview 1 2-3.
+ * Use the try catch block to handle exceptions.
+ */
 public class J203_2 {
     public static void main(String[] args) {
         // Allows user to input values.

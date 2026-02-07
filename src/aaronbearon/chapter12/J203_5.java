@@ -45,7 +45,8 @@ public class J203_5 {
              PrintWriter out = new PrintWriter(outFile)
         ) {
             out.println(NAME + " " + NUMBER);
-            while (in.hasNext()) {
+            //* The nextLine method reads every line, even blank lines.
+            while (in.hasNextLine()) {
                 String line = in.nextLine();
 
                 //* Use for each to search and replace
@@ -60,7 +61,7 @@ public class J203_5 {
 }
 
 //* Extra class as required
-//* Useful for searching and replacing
+//* To be used for searching and replacing
 class FieldSwapper {
     private final String search;
     private final String replace;

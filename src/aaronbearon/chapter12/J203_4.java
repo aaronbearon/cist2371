@@ -3,6 +3,10 @@ package aaronbearon.chapter12;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 3 Part 4
+ * Description: Same as Part 2 but the "throws" keyword is required.
+ */
 public class J203_4 {
     public static void main(String[] args) {
         // Allows user to input values.
@@ -70,5 +74,5 @@ public class J203_4 {
 
 /*
  * Modified the String name validation to call validateName()
- * This method (keyword) "throws" an exception sent back to it's caller.
+ * This new method (keyword) "throws" an exception sent back to its caller.
  */
