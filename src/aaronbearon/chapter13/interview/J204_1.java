@@ -1,7 +1,7 @@
 package aaronbearon.chapter13.interview;
 
 /**
- * Aaron Blum, CIST 2372 Java 2, Interview
+ * Aaron Blum, CIST 2372 Java 2, Interview 4
  * Description: Create the concrete Dog and Cat classes
  * from the abstract Animal class and implement them.
  */
