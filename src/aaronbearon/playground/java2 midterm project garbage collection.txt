@@ -1,0 +1,157 @@
+package aaronbearon.midterm2;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+class StatisticsCollector {
+    private static final int[] counters = new int[69];
+    private static final int[] lastInstances = new int[69];
+    private static final int[] powerBalls = new int[35];
+
+    public static DataHolder openFile() throws IOException {
+        int totalNumbers = 0, regularNumbers = 0;
+        int currentFileNum;
+        try (FileReader file = new FileReader("pbnumbers.txt");
+             Scanner in = new Scanner(file)) {
+            while (in.hasNext()) {
+                currentFileNum = in.nextInt();
+                totalNumbers += 1;
+                if (totalNumbers % 6 != 0) {
+                    regularNumbers += 1;
+                    counters[currentFileNum - 1] += 1;
+                    lastInstances[currentFileNum - 1] = regularNumbers;
+                } else {
+                    powerBalls[currentFileNum - 1] += 1;
+                }
+            }
+        }
+
+        return new DataHolder(counters, lastInstances, powerBalls);
+    }
+}
+
+class DataHolder extends StatisticsCollector {
+    private final int[][] data;
+
+    protected DataHolder(int[] counters, int[] lastInstances, int[] powerBalls) {
+        data = new int[][]{counters, lastInstances, powerBalls};
+    }
+
+    public int getSize() {
+        return data.length;
+    }
+
+    public int getSize(int i) {
+        return data[i].length;
+    }
+
+    public int getSize(int i, int j) {
+        return data[i][j];
+    }
+}
+
+/*
+
+System.out.println(currentFileNum);
+System.out.println(totalNumbers);
+System.out.println(regularNumbers);
+System.out.println(powerBallNumbers);
+for (int i : counters) {
+    System.out.print(i + " ");
+}
+
+System.out.println();
+for (int i : powerBalls) {
+    System.out.print(i + " ");
+}
+
+System.out.println();
+for (int i : lastInstances) {
+    System.out.print(i + " ");
+}
+
+*/
+
+/*
+
+for (int i = 0; i < d.getSize(); i++) {
+    for (int j = 0; j < d.getSize(i); j++) {
+        System.out.print(" " + d.getSize(i, j));
+    }
+
+    System.out.println();
+}
+
+System.out.println(d.getSize());
+System.out.println(d.getSize(0));
+System.out.println(d.getSize(1));
+System.out.println(d.getSize(2));
+
+*/
+
+public class j2m2_practice {
+    public static void main(String[] args) throws IOException {
+        DataHolder d = StatisticsCollector.openFile();
+        int[] counters = new int[d.getSize(0)];
+        for (int i = 0; i < counters.length; i++) {
+            counters[i] = d.getSize(0, i);
+            System.out.print(" " + counters[i]);
+        }
+
+        // printLargestNums(counters);
+    }
+
+    public static void printLargestNums(int[] array) {
+        System.out.println("Here are the 10 most frequent regular numbers below:");
+        int[] leaderBoard = new int[0];
+        while (true) {
+            int maxVal = -1;
+            int maxI = -1;
+            for (int i = 0; i < array.length; i++) {
+                if (maxVal < array[i] && !itemFound(leaderBoard, i + 1)) {
+                    maxVal = array[i];
+                    maxI = i + 1;
+                }
+            }
+
+            leaderBoard = addItem(leaderBoard, maxI);
+            if (leaderBoard[leaderBoard.length - 1] == maxVal) {
+                System.out.println();
+            }
+
+            System.out.print(maxI);
+            if (leaderBoard.length > 1 && maxI == leaderBoard[leaderBoard.length - 2]) {
+                System.out.println(" (Tied with above)");
+            } else {
+                System.out.println();
+            }
+
+            if (leaderBoard.length > 10) {
+                if (leaderBoard[leaderBoard.length - 1] != leaderBoard[leaderBoard.length - 2]) {
+                    break;
+                }
+            }
+        }
+    }
+
+    public static int[] addItem(int[] oldArray, int item) {
+        int[] newArray = new int[oldArray.length + 1];
+        for (int i = 0; i < oldArray.length; i++) {
+            newArray[i] = oldArray[i];
+        }
+
+        newArray[oldArray.length] = item;
+        return newArray;
+    }
+
+    public static boolean itemFound(int[] searchArray, int item) {
+        for (int i : searchArray) {
+            if (i == item) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
