@@ -12,27 +12,22 @@ public class j2mp_3 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Payroll employee;
-
         // Break at the bottom of the try catch block
         while (true) {
             // Forced entry of valid basic employee fields
             try {
-
                 // name
                 System.out.print("What's his/her name? ");
                 String name = input.nextLine();
-
                 // ID
                 System.out.print("Please enter the ID number: ");
                 int id = input.nextInt();
 
                 employee = new Payroll(name, id);
                 break;
-
                 // Unchecked exception
             } catch (InputMismatchException e) {
                 System.out.println("Error, invalid input!");
-
                 // Checked exceptions
             } catch (InvalidNameException | InvalidIDException e) {
                 System.out.println("Error: " + e.getMessage());
@@ -45,22 +40,18 @@ public class j2mp_3 {
         while (true) {
             // Forced entry of valid hours and pay
             try {
-
                 // Hourly pay rate
                 System.out.print("What is " + employee.getNAME() + "'s pay rate? ");
                 int rate = input.nextInt();
                 employee.setRate(rate);
-
                 // Hours worked during the week
                 System.out.print("How many hours did " + employee.getNAME() + " work this week? ");
                 int hours = input.nextInt();
                 employee.setWork(hours);
                 break;
-
                 // Unchecked exception
             } catch (InputMismatchException e) {
                 System.out.println("Error, invalid input!");
-
                 // Checked exceptions
             } catch (InvalidPayRateException | InvalidHoursException e) {
                 System.out.println("Error: " + e.getMessage());
@@ -79,7 +70,6 @@ class Payroll {
     // Don't change these after object creation
     private final String NAME;
     private final int ID;
-
     // Modify with care
     private int hourlyPayRate;
     private int hoursWorked;
@@ -155,3 +145,7 @@ class InvalidHoursException extends Exception {
         super(message);
     }
 }
+
+/*
+Refer to documentation and updated doc part 3.
+*/
