@@ -29,7 +29,7 @@ public class j2mp_3 {
             } catch (InputMismatchException e) {
                 System.out.println("Error, invalid input!");
                 // Checked exceptions
-            } catch (InvalidNameException | InvalidIDException e) {
+            } catch (InvalidNameException | InvalidIdException e) {
                 System.out.println("Error: " + e.getMessage());
             }
 
@@ -41,11 +41,11 @@ public class j2mp_3 {
             // Forced entry of valid hours and pay
             try {
                 // Hourly pay rate
-                System.out.print("What is " + employee.getNAME() + "'s pay rate? ");
-                int rate = input.nextInt();
+                System.out.print("What is " + employee.getName() + "'s pay rate? ");
+                double rate = input.nextDouble();
                 employee.setRate(rate);
                 // Hours worked during the week
-                System.out.print("How many hours did " + employee.getNAME() + " work this week? ");
+                System.out.print("How many hours did " + employee.getName() + " work this week? ");
                 int hours = input.nextInt();
                 employee.setWork(hours);
                 break;
@@ -61,37 +61,36 @@ public class j2mp_3 {
         }
 
         // Output to user (only if data passed validation)
-        System.out.print("#" + employee.getID() + ": " + employee.getNAME());
-        System.out.println("'s gross pay is $" + employee.getGrossPay() + ".");
+        System.out.printf("#%d: %s's gross pay is $%.2f.%n", employee.getId(), employee.getName(), employee.getGrossPay());
     }
 }
 
 class Payroll {
     // Don't change these after object creation
-    private final String NAME;
-    private final int ID;
+    private final String name;
+    private final int id;
     // Modify with care
-    private int hourlyPayRate;
+    private double hourlyPayRate;
     private int hoursWorked;
 
     /** Check the name and id before initialization */
-    public Payroll(String NAME, int ID) throws InvalidNameException, InvalidIDException {
-        if (NAME.isEmpty()) {
-            throw new InvalidNameException("Name can't be empty!");
+    public Payroll(String name, int id) throws InvalidNameException, InvalidIdException {
+        if (name.isEmpty()) {
+            throw new InvalidNameException();
         }
 
-        if (ID < 0) {
-            throw new InvalidIDException("ID must be positive!");
+        if (id < 0) {
+            throw new InvalidIdException();
         }
 
-        this.NAME = NAME;
-        this.ID = ID;
+        this.name = name;
+        this.id = id;
     }
 
     /** Check the pay rate before initialization */
-    public void setRate(int hourlyPayRate) throws InvalidPayRateException {
+    public void setRate(double hourlyPayRate) throws InvalidPayRateException {
         if (hourlyPayRate < 0 || hourlyPayRate > 25) {
-            throw new InvalidPayRateException("Hours Worked must be in range of 0 and 25!");
+            throw new InvalidPayRateException();
         }
 
         this.hourlyPayRate = hourlyPayRate;
@@ -100,49 +99,49 @@ class Payroll {
     /** Check the hours worked before initialization */
     public void setWork(int hoursWorked) throws InvalidHoursException {
         if (hoursWorked < 0 || hoursWorked > 84) {
-            throw new InvalidHoursException("Pay rate must be in range of 0 and 84!");
+            throw new InvalidHoursException();
         }
 
         this.hoursWorked = hoursWorked;
     }
 
     // Important calculation
-    public int getGrossPay() {
+    public double getGrossPay() {
         return hourlyPayRate * hoursWorked;
     }
 
     // Get final fields for user info
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 }
 
 // Custom exceptions for the different Payroll fields
 class InvalidNameException extends Exception {
-    public InvalidNameException(String message) {
-        super(message);
+    public InvalidNameException() {
+        super("name can't be empty!");
     }
 }
 
-class InvalidIDException extends Exception {
-    public InvalidIDException(String message) {
-        super(message);
+class InvalidIdException extends Exception {
+    public InvalidIdException() {
+        super("id must be positive!");
     }
 }
 
 class InvalidPayRateException extends Exception {
-    public InvalidPayRateException(String message) {
-        super(message);
+    public InvalidPayRateException() {
+        super("Pay rate must be in range of 0 and 25");
     }
 }
 
 class InvalidHoursException extends Exception {
-    public InvalidHoursException(String message) {
-        super(message);
+    public InvalidHoursException() {
+        super("Hours Worked must be in range of 0 and 84!");
     }
 }
 
