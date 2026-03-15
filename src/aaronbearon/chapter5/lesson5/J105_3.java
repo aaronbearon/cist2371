@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class J105_3 {
     public static void main(String[] args) {
         // Pick a secret answer.
-        final int answer = (int) (Math.random() * 101);
+        final int answer = (int) (Math.random() * 256);
 
         // Setup the input and give instructions.
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter a positive number in the range of 0-100 and I'll tell you if it matches: ");
+        System.out.print("Enter a positive number in the range of 0-255 and I'll tell you if it matches: ");
         do {
             int n = input.nextInt();
 
