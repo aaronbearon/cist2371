@@ -13,6 +13,10 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 7 Part 4
+ * Description: Control the ball speed with a slider.
+ */
 public class J207_34 extends Application {
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
@@ -117,3 +121,12 @@ class BallPane extends Pane {
         circle.setCenterY(y);
     }
 }
+
+/*
+
+The BallPane problem is mentioned in a previous chapter.
+The slider is introduced here, and has numbers and tick marks.
+I combined the two into this file, and removed the arrow keys' speed changing abilities.
+The slider controls the speed and can even stop the ball, just like a pressed mouse.
+
+*/

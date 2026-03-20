@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aaronbearon.chapter16.lesson16.StyleController">
+    <center>
+        <Pane id="paneForText">
+            <children>
+                <Text fx:id="text" layoutX="50.0" layoutY="50.0" text="JavaFX Programming">
+                    <font>
+                        <Font name="Times New Roman" size="20.0" />
+                    </font>
+                </Text>
+            </children>
+        </Pane>
+    </center>
+    <bottom>
+        <HBox id="paneForButtons" alignment="CENTER" spacing="20.0" style="-fx-border-color: green;" BorderPane.alignment="CENTER">
+            <children>
+                <Button text="Left" onAction="#leftClicked">
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="https://liveexample.pearsoncmg.com/html/image/left.gif" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button text="Right" onAction="#rightClicked">
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="https://liveexample.pearsoncmg.com/html/image/right.gif" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </HBox>
+    </bottom>
+    <right>
+        <VBox id="paneForCheckboxes" spacing="20.0" style="-fx-border-color: green;">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <children>
+                <CheckBox fx:id="chkBold" onAction="#chkActionHandler" text="Bold" />
+                <CheckBox fx:id="chkItalic" onAction="#chkActionHandler" text="Italic" />
+                <CheckBox fx:id="chkUnderline" onAction="#chkActionHandler" text="Underline" />
+                <CheckBox fx:id="chkStrikethrough" onAction="#chkActionHandler" text="Strike-through" />
+            </children>
+        </VBox>
+    </right>
+    <left>
+        <VBox id="paneForRadioButtons" spacing="20.0" style="-fx-border-width: 2px; -fx-border-color: green;">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <children>
+                <RadioButton fx:id="rbRed" onAction="#radioActionHandler" text="Red">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="color" />
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="rbYellow" onAction="#radioActionHandler" text="Yellow" toggleGroup="$color" />
+                <RadioButton fx:id="rbGreen" onAction="#radioActionHandler" text="Green" toggleGroup="$color" />
+                <RadioButton fx:id="rbBlue" onAction="#radioActionHandler" text="Blue" toggleGroup="$color" />
+                <RadioButton fx:id="rbPurple" onAction="#radioActionHandler" text="Purple" toggleGroup="$color" />
+            </children>
+        </VBox>
+    </left>
+    <top>
+        <BorderPane id="paneForTextField" style="-fx-border-color: green;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+         <left>
+            <Label text="Enter a new message:" BorderPane.alignment="CENTER" />
+         </left>
+         <center>
+            <TextField fx:id="txtMessage" alignment="BOTTOM_RIGHT" BorderPane.alignment="CENTER" onAction="#messageHandler"/>
+         </center>
+        </BorderPane>
+    </top>
+</BorderPane>

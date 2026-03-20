@@ -13,6 +13,10 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 7 Part 7
+ * Description: Change part 5 to also play the selected country's national anthem.
+ */
 public class J207_37 extends Application {
     // Declare an array of Strings for flag titles
     //* I picked 5 from the list and reordered them.
@@ -40,7 +44,6 @@ public class J207_37 extends Application {
             new MediaPlayer(new Media("https://liveexample.pearsoncmg.com/common/audio/anthem/anthem1.mp3")),
             new MediaPlayer(new Media("https://liveexample.pearsoncmg.com/common/audio/anthem/anthem2.mp3"))
     };
-
 
     // Declare an array of strings for flag descriptions
     //* There's only 5 now.
@@ -158,3 +161,8 @@ class DescriptionPane extends BorderPane {
         taDescription.setText(text);
     }
 }
+
+/*
+Wire up audio for selected country.
+I hand computed the national anthem URLs after looking at the FlagAnthem example.
+*/

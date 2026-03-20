@@ -11,6 +11,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 7 Part 5
+ * Description: Choose 5 countries and write a description for each.
+ */
 public class J207_35 extends Application {
     // Declare an array of Strings for flag titles
     //* I picked 5 from the list and reordered them.
@@ -135,3 +139,11 @@ class DescriptionPane extends BorderPane {
         taDescription.setText(text);
     }
 }
+
+/*
+
+Similar to part 2: I chose the same countries.
+The combo box uses an observable list of String items.
+I added a description for each of the 5 countries.
+
+*/

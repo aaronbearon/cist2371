@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 7 Part 1
+ * Description: Change colors, sizes, and details for shapes and an image.
+ */
 public class J207_31 extends Application {
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
@@ -99,3 +103,10 @@ public class J207_31 extends Application {
         launch(args);
     }
 }
+
+/*
+
+I Changed the built-in shapes to polygons and changed the flag to Germany.
+Note: no need to submit a personal image. I got this image is from later problems.
+
+*/

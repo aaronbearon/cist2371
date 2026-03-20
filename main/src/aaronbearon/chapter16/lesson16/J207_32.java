@@ -11,6 +11,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 7 Part 2
+ * Description: Show off the flags of 5 countries.
+ */
 public class J207_32 extends Application {
     // Declare an array of Strings for flag titles
     //* I picked 5 from the list and reordered them.
@@ -74,3 +78,10 @@ public class J207_32 extends Application {
         launch(args);
     }
 }
+
+/*
+
+I removed all but 5 of the given countries.
+I removed the ability to select more than two.
+
+*/

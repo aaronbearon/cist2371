@@ -1,10 +1,12 @@
-module com.example {
+module aaronbearon {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
 
     requires com.almasb.fxgl.all;
-    requires javafx.media;
+    requires eu.hansolo.tilesfx;
+    requires javafx.web;
 
     opens aaronbearon.chapter16.lesson16 to javafx.fxml;
     exports aaronbearon.chapter16.lesson16;
- }
+}

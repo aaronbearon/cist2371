@@ -17,6 +17,10 @@ import javafx.util.Duration;
 
 import java.net.URL;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 7 Part 6
+ * Description: Play a video from local disc.
+ */
 public class J207_36 extends Application {
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
@@ -74,3 +78,8 @@ public class J207_36 extends Application {
         launch(args);
     }
 }
+
+/*
+I chose a video from the BlackBoard zip file like the instructions said, so I picked the fractal video.
+The video must be on your local system to run this example app.
+*/

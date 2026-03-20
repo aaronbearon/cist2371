@@ -9,6 +9,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 7 Part 3
+ * Description: listen for scroll bar changes and change their minimums and maximums.
+ */
 public class J207_33 extends Application {
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
@@ -59,3 +63,10 @@ public class J207_33 extends Application {
         launch(args);
     }
 }
+
+/*
+
+Tricky: The minimum and maximum values based on absolute length and width.
+They're not based on the relative window size.
+
+*/
