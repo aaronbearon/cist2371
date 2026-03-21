@@ -1,4 +1,4 @@
-package aaronbearon.chapter16.lesson16;
+package aaronbearon.chapter16.lesson7;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

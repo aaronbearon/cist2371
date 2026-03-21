@@ -7,6 +7,6 @@ module aaronbearon {
     requires eu.hansolo.tilesfx;
     requires javafx.web;
 
-    opens aaronbearon.chapter16.lesson16 to javafx.fxml;
-    exports aaronbearon.chapter16.lesson16;
+    opens aaronbearon.chapter16.lesson7 to javafx.fxml;
+    exports aaronbearon.chapter16.lesson7;
 }

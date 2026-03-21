@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+
+<TabPane prefHeight="250.0" prefWidth="300.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <tabs>
+        <Tab text="Line">
+            <content>
+                <StackPane>
+                    <children>
+                        <Line endX="80.0" endY="80.0" startX="10.0" startY="10.0" />
+                    </children>
+                </StackPane>
+            </content>
+        </Tab>
+        <Tab text="Rectangle">
+            <content>
+                <StackPane>
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                    </children>
+                </StackPane>
+            </content>
+        </Tab>
+        <Tab text="Circle">
+            <content>
+                <StackPane>
+                    <children>
+                        <Circle fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                    </children>
+                </StackPane>
+            </content>
+        </Tab>
+        <Tab text="Ellipse">
+            <content>
+                <StackPane>
+                    <children>
+                        <Ellipse fill="DODGERBLUE" radiusX="100.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE" />
+                    </children>
+                </StackPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
