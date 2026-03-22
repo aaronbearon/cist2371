@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<BorderPane prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="aaronbearon.chapter31.lesson8.J208_310controller">
+    <center>
+        <TableView fx:id="tableView" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn minWidth="100.0" text="Country">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="country"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="100.0" text="Capital">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="capital"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="100.0" text="Population (million)">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="population"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="100.0" text="Is Democratic?">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="democratic"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <FlowPane hgap="3.0" vgap="3.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Country: "/>
+                <TextField fx:id="tfCountry" prefColumnCount="5"/>
+                <Label text="Capital"/>
+                <TextField fx:id="tfCapital" prefColumnCount="5"/>
+                <Label text="Population"/>
+                <TextField fx:id="tfPopulation" prefColumnCount="5"/>
+                <CheckBox fx:id="chkDemocratic" text="Is democratic?"/>
+                <Button fx:id="btAddRow" mnemonicParsing="false" onAction="#handleAddRow" text="Add new row"/>
+            </children>
+        </FlowPane>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<SplitPane prefHeight="250.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="aaronbearon.chapter31.lesson8.J208_311controller">
+    <items>
+        <VBox spacing="10.0">
+            <children>
+                <RadioButton fx:id="rbUS" mnemonicParsing="false" onAction="#handleRbUS" selected="true" text="US">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="group"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="rbUK" mnemonicParsing="false" onAction="#handleRbUK" text="UK"
+                             toggleGroup="$group"/>
+                <RadioButton fx:id="rbCA" mnemonicParsing="false" onAction="#handleRbCA" text="CA"
+                             toggleGroup="$group"/>
+            </children>
+        </VBox>
+        <SplitPane orientation="VERTICAL">
+            <items>
+                <StackPane>
+                    <children>
+                        <ImageView fx:id="imageView" pickOnBounds="true" preserveRatio="true"/>
+                    </children>
+                </StackPane>
+                <ScrollPane>
+                    <content>
+                        <TextArea fx:id="taDescription"/>
+                    </content>
+                </ScrollPane>
+            </items>
+        </SplitPane>
+    </items>
+</SplitPane>
