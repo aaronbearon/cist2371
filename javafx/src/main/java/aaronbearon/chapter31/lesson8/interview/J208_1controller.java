@@ -1,12 +1,11 @@
 package aaronbearon.chapter31.lesson8.interview;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class J208_1controller {
 
-    private interface Op {
+    private interface Operation {
         double Compute(double a, double b);
     }
 
@@ -44,7 +43,7 @@ public class J208_1controller {
         System.exit(0);
     }
 
-    private void doOperation(Op op) {
+    private void doOperation(Operation op) {
         try {
             double a = Double.parseDouble(txt1.getText());
             double b = Double.parseDouble(txt2.getText());

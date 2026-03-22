@@ -11,7 +11,7 @@ public class J208_1 extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("J208_1.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 300, 250);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Calculator");
         stage.setScene(scene);
         stage.show();

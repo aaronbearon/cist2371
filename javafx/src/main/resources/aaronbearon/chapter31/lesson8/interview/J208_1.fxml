@@ -1,66 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.input.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="aaronbearon.chapter31.lesson8.interview.J208_1controller">
+
+<BorderPane
+        prefWidth="450"
+        prefHeight="300"
+        xmlns="http://javafx.com/javafx/17.0.12"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="aaronbearon.chapter31.lesson8.interview.J208_1controller"
+>
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Operation">
                 <MenuItem mnemonicParsing="false" onAction="#add" text="Add">
                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                        <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                     </accelerator>
                 </MenuItem>
                 <MenuItem mnemonicParsing="false" onAction="#subtract" text="Subtract">
                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                     </accelerator>
                 </MenuItem>
                 <MenuItem mnemonicParsing="false" onAction="#multiply" text="Multiply">
                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                        <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                     </accelerator>
                 </MenuItem>
                 <MenuItem mnemonicParsing="false" onAction="#divide" text="Divide">
                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                        <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                     </accelerator>
                 </MenuItem>
             </Menu>
             <Menu mnemonicParsing="false" text="Exit">
-                <MenuItem mnemonicParsing="false" onAction="#quit" text="Close"/>
+                <MenuItem mnemonicParsing="false" onAction="#quit" text="Close" />
             </Menu>
         </MenuBar>
     </top>
     <center>
         <BorderPane BorderPane.alignment="CENTER">
             <top>
-                <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
-                      BorderPane.alignment="CENTER">
+                <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
-                    <Label text="Number 1"/>
-                    <TextField fx:id="txt1" prefColumnCount="2"/>
-                    <Label text="Number 2"/>
-                    <TextField fx:id="txt2" prefColumnCount="2"/>
-                    <Label text="="/>
-                    <TextField fx:id="txtOut" prefColumnCount="2"/>
+                    <Label text="Number 1" />
+                    <TextField fx:id="txt1" prefColumnCount="2" />
+                    <Label text="Number 2" />
+                    <TextField fx:id="txt2" prefColumnCount="2" />
+                    <Label text="=" />
+                    <TextField fx:id="txtOut" editable="false" prefColumnCount="2" />
                 </HBox>
             </top>
             <bottom>
-                <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
-                      BorderPane.alignment="CENTER">
+                <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
-                    <Button mnemonicParsing="false" onAction="#add" text="Add"/>
-                    <Button mnemonicParsing="false" onAction="#subtract" text="Subtract"/>
-                    <Button mnemonicParsing="false" onAction="#multiply" text="Multiply"/>
-                    <Button mnemonicParsing="false" onAction="#divide" text="Divide"/>
+                    <Button mnemonicParsing="false" onAction="#add" text="Add" />
+                    <Button mnemonicParsing="false" onAction="#subtract" text="Subtract" />
+                    <Button mnemonicParsing="false" onAction="#multiply" text="Multiply" />
+                    <Button mnemonicParsing="false" onAction="#divide" text="Divide" />
                 </HBox>
             </bottom>
         </BorderPane>
