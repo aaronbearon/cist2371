@@ -1,4 +1,4 @@
-package aaronbearon.GuiTemplate;
+package aaronbearon.guitemplate;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
