@@ -94,7 +94,7 @@ public class J208_36 extends Application {
 
         //* Added a red dashed line like above, but perpendicular.
         Line line8 = new Line(460, 290, 560, 190);
-        line8.getStrokeDashArray().addAll(35.0, 16.0, 27.0, 13.0);
+        line8.getStrokeDashArray().addAll(18.0, 12.0, 7.0, 6.0);
         line8.setStroke(Color.RED);
 
         //* Made necessary additions.
@@ -103,6 +103,7 @@ public class J208_36 extends Application {
                 line1, line2, line3, line4, line5, line6, line7, line8,
                 triangle1, triangle2, triangle3);
 
+        //* Increased height
         Scene scene = new Scene(pane, 610, 360);
         primaryStage.setTitle("StrokeDemo"); // Set the window title
         primaryStage.setScene(scene); // Place the scene in the window
@@ -114,3 +115,14 @@ public class J208_36 extends Application {
         launch(args);
     }
 }
+
+/*
+
+My new shapes are below the originals.
+I made right triangles and used the stroke join types.
+They include red, bright green (lime) and blue, with smaller borders than above.
+My three line caps are vertical, colored, and different widths.
+I made a red dashed line perpendicular to the black one above.
+The dash fields alternate line and non-line.
+
+*/

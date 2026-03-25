@@ -61,3 +61,10 @@ public class J208_37 extends Application {
         launch(args);
     }
 }
+
+/*
+
+I added three new menu items, with proper labels.
+I found links online and used appropriate symbols.
+
+*/

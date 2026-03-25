@@ -5,6 +5,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 8 Part 10
+ * Description: App that displays countries and flags.
+ */
 public class J208_311controller {
 
     @FXML private ImageView imageView;
@@ -45,3 +49,9 @@ public class J208_311controller {
         taDescription.setText(caDescription);
     }
 }
+
+/*
+
+Converted everything to Scene Builder.
+
+*/

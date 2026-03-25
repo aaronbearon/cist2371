@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 8 Part 11
+ * Description: Refer to the controller file.
+ */
 public class J208_311 extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -25,3 +29,9 @@ public class J208_311 extends Application {
         launch(args);
     }
 }
+
+/*
+
+Refer to controller.
+
+*/

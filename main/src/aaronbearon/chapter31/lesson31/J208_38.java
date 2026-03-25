@@ -65,6 +65,7 @@ public class J208_38 extends Application {
 
         Pane pane = new Pane();
         pane.getChildren().add(tableView);
+        //* Bigger window
         Scene scene = new Scene(pane, 900, 500);
         primaryStage.setTitle("TableViewDemo"); // Set the window title
         primaryStage.setScene(scene); // Place the scene in the window
@@ -139,3 +140,13 @@ public class J208_38 extends Application {
         launch(args);
     }
 }
+
+/*
+
+I looked everywhere in the code for datatypes and potential 'gotcha's.
+Using careful observation, I added all the necessary components everywhere.
+The last column now works normally.
+
+I also made the default window large enough to show the whole table.
+
+*/

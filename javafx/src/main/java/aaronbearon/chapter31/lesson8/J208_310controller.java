@@ -10,6 +10,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 8 Part 10
+ * Description: App that shows facts about countries.
+ */
 public class J208_310controller {
 
     @FXML
@@ -97,3 +101,9 @@ public class J208_310controller {
         }
     }
 }
+
+/*
+
+Converted everything to Scene Builder.
+
+*/

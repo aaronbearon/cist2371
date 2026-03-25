@@ -18,7 +18,7 @@ public class J208_32 extends Application {
         HBox hBox = new HBox(5);
         //* Load window is big enough to fully show all the panes.
         Scene scene = new Scene(hBox, 500, 250);
-        scene.getStylesheets().add("mystyle.css"); // Load the stylesheet
+        scene.getStylesheets().add("J208_32_m.txt"); // Load the stylesheet
 
         Pane pane1 = new Pane();
         //* Set all circles to:
