@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="aaronbearon.chapter18.lesson9.interview.J209_1_controller">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    <Label text="Enter number to display sum of numbers up to that number"/>
+    <TextField fx:id="txtIn"/>
+    <Button mnemonicParsing="false" onAction="#onCalculate" text="Calculate"/>
+    <TextField fx:id="txtOut" editable="false"/>
+</VBox>
