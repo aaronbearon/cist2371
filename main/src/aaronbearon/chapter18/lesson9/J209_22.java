@@ -6,7 +6,7 @@ public class J209_22 {
     // Use a recursion and an int array to store and display the Fibonacci numbers up to the user's number count.
     public static void main(String[] args) {
         int size = getNumsCount();
-        int[] fibs = new int[size + 1];
+        int[] fibs = new int[Math.max(0, size + 1)];
         System.out.print("Here are the numbers: ");
         getFibs(fibs, true, size);
 
@@ -14,24 +14,27 @@ public class J209_22 {
     }
 
     //* Unlike the textbook's algorithm, this one stores the numbers in an array.
-    // It allows all the numbers in the user's range to be printed.
+    // The array allows us to cache already-computed values -- this makes the algorithm
+    // linear instead of exponential.
+    // If canPrint is true, print the series of numbers as we go.
     public static int getFibs(int[] fibs, boolean canPrint, int index) {
-        if (index < 2) {
-            fibs[index] = index;
-        } else if (canPrint && index == 2) {
-            fibs[index] = getFibs(fibs, true, 0) + getFibs(fibs, true, 1);
-        } else if (canPrint) {
-            // Only print the number through the first recursive branch.
-            // After that, a false boolean is passed to the next call to prevent printing.
-            fibs[index] = getFibs(fibs, true, index - 1) + getFibs(fibs, false, index - 2);
-        } else {
-            fibs[index] = getFibs(fibs, false, index - 1) + getFibs(fibs, false, index - 2);
+        // This method needs to terminate if a negative index is passed in.
+        if (index < 0) {
+            System.out.println("Sorry, Fibonacci doesn't go negative.");
+            return -1;
+        }
+
+        if (fibs[index] == 0 && index > 0) {
+            if (index == 1) {
+                fibs[index] = 1 + getFibs(fibs, canPrint, 0);
+            } else {
+                fibs[index] = getFibs(fibs, canPrint, index - 1) + getFibs(fibs, false, index - 2);
+            }
         }
 
         if (canPrint) {
             System.out.print(" " + fibs[index]);
         }
-
         return fibs[index];
     }
 
@@ -45,7 +48,6 @@ public class J209_22 {
                 if (size < 0) {
                     throw new Exception();
                 }
-
                 return size;
             } catch (Exception e) {
                 System.out.println("Error, please enter a non-negative integer.");
@@ -53,3 +55,7 @@ public class J209_22 {
         }
     }
 }
+
+/*
+TODO
+*/

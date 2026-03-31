@@ -31,7 +31,6 @@ public class J209_21 {
                 if (size < 0) {
                     throw new Exception();
                 }
-
                 return size;
             } catch (Exception e) {
                 System.out.println("Error, please enter a non-negative integer.");
@@ -39,3 +38,7 @@ public class J209_21 {
         }
     }
 }
+
+/*
+TODO
+*/
