@@ -12,7 +12,7 @@ import javafx.scene.shape.Line;
  * Aaron Blum, CIST 2372 Java 2, Lab 9 Part 6
  * Description: Create a fractal
  */
-public class J209_6controller {
+public class J209_6_controller {
     @FXML
     private TextField txtIn;
 
