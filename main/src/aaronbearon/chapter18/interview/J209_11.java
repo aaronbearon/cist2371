@@ -24,11 +24,7 @@ public class J209_11 {
         System.out.println(sum);
     }
 
-    /**
-     * Ensure user enters positive number.
-     *
-     * @return non-zero int
-     */
+    // Ensure the user enters a non-zero int before returning it.
     public static int getNumsCount() {
         while (true) {
             try {

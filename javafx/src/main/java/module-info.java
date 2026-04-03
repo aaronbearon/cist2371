@@ -18,4 +18,10 @@ module aaronbearon {
 
     opens aaronbearon.chapter31.lesson8.interview to javafx.fxml;
     exports aaronbearon.chapter31.lesson8.interview;
+
+    opens aaronbearon.chapter18.lesson9 to javafx.fxml;
+    exports aaronbearon.chapter18.lesson9;
+
+    opens aaronbearon.chapter18.lesson9.interview to javafx.fxml;
+    exports aaronbearon.chapter18.lesson9.interview;
 }

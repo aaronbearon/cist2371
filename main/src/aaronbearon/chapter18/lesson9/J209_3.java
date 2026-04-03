@@ -2,6 +2,10 @@ package aaronbearon.chapter18.lesson9;
 
 import java.util.Scanner;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 9 part 3
+ * Description: Simulate the tower of Hanoi with recursion.
+ */
 public class J209_3 {
     private static final char LEFT = 'A';
     private static final char MIDDLE = 'B';
@@ -9,24 +13,35 @@ public class J209_3 {
 
     public static void main(String[] args) {
         System.out.println("Please move the Tower of Hanoi from " + LEFT + " to " + RIGHT + ".");
-        moveDiscs(LEFT, MIDDLE, RIGHT, getNumsCount());
+        moveDiscs(LEFT, RIGHT, getNumsCount());
     }
 
     // Move all discs in minimum move count.
-    public static void moveDiscs(char start, char aux, char goal, int numDiscs) {
-        if (start == aux || aux == goal || goal == start) {
-            throw new IllegalArgumentException("This game only works with 3 unique rods.");
-        } else if (numDiscs <= 0) {
+    public static void moveDiscs(char start, char goal, int numDiscs) {
+        if (start == goal) {
+            throw new IllegalArgumentException("Start and goal cannot be the same");
+        }
+        if (numDiscs <= 0) {
             throw new IllegalArgumentException("numDiscs must be >= 0");
-        } else {
-            if (numDiscs > 1) {
-                moveDiscs(start, goal, aux, numDiscs - 1);
-            }
+        }
 
-            System.out.println("Move disc " + numDiscs + " from " + start + " to " + goal + ".");
-            if (numDiscs > 1) {
-                moveDiscs(aux, start, goal, numDiscs - 1);
-            }
+        char aux = 0;
+        if (start != LEFT && goal != LEFT) {
+            aux = LEFT;
+        }
+        if (start != MIDDLE && goal != MIDDLE) {
+            aux = MIDDLE;
+        }
+        if (start != RIGHT && goal != RIGHT) {
+            aux = RIGHT;
+        }
+
+        if (numDiscs > 1) {
+            moveDiscs(start, aux, numDiscs - 1);
+        }
+        System.out.println("Move disc " + numDiscs + " from " + start + " to " + goal + ".");
+        if (numDiscs > 1) {
+            moveDiscs(aux, goal, numDiscs - 1);
         }
     }
 
@@ -50,9 +65,8 @@ public class J209_3 {
 
 /*
 
-Tower of Hanoi:
-
-Pre-coding Documentation:
+Tower of Hanoi Pre-coding Documentation:
+I basically derived my core algorithm from here.
 
 Move 1-4 from A-C.
     Move 1-3 from A-B.
@@ -90,6 +104,12 @@ Move 1-4 from A-C.
     End 1-3 B-C.
 End 1-4 A-C.
 
-TODO: Add post code doc
+The section below is based on the algorithm I ended up with:
+
+I created constant chars A B and C for the class.
+I added exception handling inside the moveDiscs method, in addition to the exception handling method.
+The moveDiscs method can infer the auxiliary from the start and goal.
+
+I chose A to be the start and C to be the goal.
 
 */

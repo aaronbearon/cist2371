@@ -2,11 +2,15 @@ package aaronbearon.chapter18.lesson9;
 
 import java.util.Scanner;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 9 part 2-2
+ * Description: Print the user-entered number of Fibonacci numbers recursion.
+ */
 public class J209_22 {
-    // Use a recursion and an int array to store and display the Fibonacci numbers up to the user's number count.
+    // Use recursion and an int array to store and display the Fibonacci numbers up to the user's number count.
     public static void main(String[] args) {
         int size = getNumsCount();
-        int[] fibs = new int[Math.max(0, size + 1)];
+        int[] fibs = new int[size + 1];
         System.out.print("Here are the numbers: ");
         getFibs(fibs, true, size);
 
@@ -20,8 +24,7 @@ public class J209_22 {
     public static int getFibs(int[] fibs, boolean canPrint, int index) {
         // This method needs to terminate if a negative index is passed in.
         if (index < 0) {
-            System.out.println("Sorry, Fibonacci doesn't go negative.");
-            return -1;
+            throw new IllegalArgumentException("Sorry, Fibonacci doesn't go negative.");
         }
 
         if (fibs[index] == 0 && index > 0) {
@@ -57,5 +60,16 @@ public class J209_22 {
 }
 
 /*
-TODO
+
+Like the for loop problem, the Fibonacci problem mostly the same in terms of input and output.
+This time, I used recursion.
+
+Since this problem is naturally exponential, I added a canPrint parameter.
+I also wrapped some of the logic in an if block in line 30,
+    which prevents time consumption for already initialized values.
+
+This makes it less exponential and more linear.
+
+A try~catch block is there to validate user input.
+
 */
