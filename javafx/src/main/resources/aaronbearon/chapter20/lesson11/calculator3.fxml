@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="aaronbearon.chapter20.lesson11.calculator3_controller">
+    <TextArea fx:id="display" editable="false" prefHeight="50.0" VBox.vgrow="ALWAYS" style="-fx-font-size: 20px;"/>
+
+    <GridPane hgap="1" vgap="2" VBox.vgrow="ALWAYS"
+              style="-fx-background-color: #4b0082;">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="16.667"/>
+            <ColumnConstraints percentWidth="16.667"/>
+            <ColumnConstraints percentWidth="16.666"/>
+            <ColumnConstraints percentWidth="16.666"/>
+            <ColumnConstraints percentWidth="16.667"/>
+            <ColumnConstraints percentWidth="16.667"/>
+        </columnConstraints>
+
+        <rowConstraints>
+            <RowConstraints percentHeight="16.667" vgrow="ALWAYS"/>
+            <RowConstraints percentHeight="16.667" vgrow="ALWAYS"/>
+            <RowConstraints percentHeight="16.667" vgrow="ALWAYS"/>
+            <RowConstraints percentHeight="16.667" vgrow="ALWAYS"/>
+            <RowConstraints percentHeight="16.666" vgrow="ALWAYS"/>
+            <RowConstraints percentHeight="16.666" vgrow="ALWAYS"/>
+        </rowConstraints>
+
+        <Button text="1" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="2" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="3" GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+
+        <Button text="4" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="5" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="6" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+
+        <Button text="7" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="8" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="9" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+
+        <Button text="+" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="-" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+
+        <Button text="/" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="*" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.columnSpan="2" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="(" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: white; -fx-text-fill: #5d6edb; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #5d6edb;"/>
+        <Button text=")" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: white; -fx-text-fill: #5d6edb; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #5d6edb;"/>
+
+        <Button text="=" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="3" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+        <Button text="CE" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.columnSpan="3" maxWidth="Infinity"
+                maxHeight="Infinity"
+                style="-fx-background-color: #5d6edb; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 0; -fx-border-color: #ffffff22;"/>
+    </GridPane>
+</VBox>

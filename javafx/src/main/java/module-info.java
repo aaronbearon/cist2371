@@ -24,4 +24,7 @@ module aaronbearon {
 
     opens aaronbearon.chapter18.lesson9.interview to javafx.fxml;
     exports aaronbearon.chapter18.lesson9.interview;
+
+    opens aaronbearon.chapter20.lesson11 to javafx.fxml;
+    exports aaronbearon.chapter20.lesson11;
 }
