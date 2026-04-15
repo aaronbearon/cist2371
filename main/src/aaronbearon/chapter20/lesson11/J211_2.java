@@ -2,17 +2,22 @@ package aaronbearon.chapter20.lesson11;
 
 import java.util.*;
 
-
+/**
+ * Aaron Blum, CIST 2372 Java 2, Lab 11
+ * Description: Modify the core algorithm to test the expressions from the instructions.
+ * Provide your own structure to the implementation.
+ */
 public class J211_2 {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {//throws Exception {
         Scanner input = new Scanner(System.in);
-        System.out.println("Here are some test cases below");
+        System.out.println("Here are some test cases below:");
         System.out.println();
         // Required test expressions
         validateExpression("1+2 * 3 - 1"); // 6
         validateExpression("((1+2)) * 3 - 1"); // 8
         validateExpression("(1+2) * (3 - 1)"); // 6
-        validateExpression("1+2 0"); // 21 (numbers can be separated by only space, but 1 + 2 () 0 is wrong)
+        //* Numbers with spaces between the digits now work.
+        validateExpression("1+2 0"); // 21 (numbers can be separated by space, but 1 + 2 () 0 is wrong)
         // Optional text expressions
         validateExpression("((()(( 5 + ((2)))()*4)()))"); // 28
         validateExpression("((()( 5 + ((2))()*4)()))()"); // 13
@@ -36,10 +41,16 @@ public class J211_2 {
             System.out.print(testExpression + " = ");
             EvaluateExpression e = new EvaluateExpression();
             System.out.println(e.calcExpression(testExpression));
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Invalid operation: " + e.getMessage());
         } catch (EmptyStackException e) {
-            System.out.println("Stack is already empty!");
+            System.out.println("Stack is already Empty!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid argument: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("Runtime Exception: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Exception: " + e.getMessage());
         }
     }
 }
@@ -76,7 +87,7 @@ class EvaluateExpression {
                 validate(Symbols.found(tokens[i - 1]), symIndex);
             }
 
-            if (symIndex >= Symbols.OPS_LEN) {
+            if (symIndex >= Symbols.values().length) {
                 try {
                     numStack.push(Integer.parseInt(tokens[i]));
                 } catch (Exception e) {
@@ -92,9 +103,9 @@ class EvaluateExpression {
                 if (numRecent) {
                     throw new Exception("Two straight operators not allowed!");
                 }
-                prepStack(Symbols.getSymbol(symIndex));
+                prepStack(Symbols.getOperator(symIndex));
             } else {
-                prepStack(Symbols.getSymbol(symIndex));
+                prepStack(Symbols.getOperator(symIndex));
             }
         }
         // Terminate the expression after the for loop.
@@ -112,11 +123,21 @@ class EvaluateExpression {
         }
     }
 
+    /**
+     * Don't allow certain patterns of consecutive items.
+     *
+     * @param l ordinal of previous item
+     * @param r ordinal of current item
+     * @throws Exception if invalid
+     */
     private void validate(int l, int r) throws Exception {
-        if ((l == Symbols.LPAREN && r >= Symbols.MUL && r < Symbols.OPS_LEN) || (l == Symbols.RPAREN && r >= Symbols.OPS_LEN)) {
+        final int OPS_LEN = Symbols.values().length;
+        if ((l == Symbols.LPAREN.ordinal() && r >= Symbols.MUL.ordinal() && r < OPS_LEN) ||
+                (l == Symbols.RPAREN.ordinal() && r >= OPS_LEN)) {
             throw new Exception("'(sign' and/or ')num' not allowed!");
         }
-        if ((l >= Symbols.OPS_LEN && r == Symbols.LPAREN) || (l >= Symbols.MUL && l < Symbols.OPS_LEN && r == Symbols.RPAREN)) {
+        if ((l >= OPS_LEN && r == Symbols.LPAREN.ordinal()) ||
+                (l >= Symbols.MUL.ordinal() && l < OPS_LEN && r == Symbols.RPAREN.ordinal())) {
             throw new Exception("'num(' and/or 'sign)' not allowed!");
         }
     }
@@ -143,26 +164,35 @@ class EvaluateExpression {
     private void clearStack(char op) {
         int oldOpIndex;
         int newOpIndex;
+        // This logic only occurs with non-empty stack
         if (!opStack.empty()) {
             oldOpIndex = Symbols.found(String.valueOf(opStack.peek()));
             newOpIndex = Symbols.found(String.valueOf(op));
-            if (oldOpIndex > Symbols.RPAREN) {
-                if (!(oldOpIndex > Symbols.DIV && newOpIndex > Symbols.RPAREN && newOpIndex < Symbols.ADD)) {
+            // Next checks require top of op stack to be one of the 4 signs.
+            if (oldOpIndex > Symbols.RPAREN.ordinal()) {
+                // For this to work, it's not allowed for stack op to be + or - and
+                //  for new op to next op to be * or /.
+                if (!(oldOpIndex > Symbols.DIV.ordinal() && newOpIndex > Symbols.RPAREN.ordinal() &&
+                        newOpIndex < Symbols.ADD.ordinal())) {
                     int num2 = numStack.pop();
                     int num1 = numStack.pop();
                     char oldOp = opStack.pop();
                     numStack.push(getAnswer(num1, oldOp, num2));
+                    // Recursive call
                     clearStack(op);
                 }
                 return;
             }
         }
 
+        // Only if the innermost logic doesn't occur.
         if (op == ')') {
             opStack.pop();
         }
     }
 
+    // Return a lambda version of a switch statement.
+    // It takes the two numbers in order with the operation.
     private int getAnswer(int num1, char sign, int num2) {
         return switch (sign) {
             case '+' -> num1 + num2;
@@ -174,19 +204,30 @@ class EvaluateExpression {
     }
 }
 
-class Symbols {
-    public static final int LPAREN = 0;
-    public static final int RPAREN = 1;
-    public static final int MUL = 2;
-    public static final int DIV = 3;
-    public static final int ADD = 4;
-    public static final int SUB = 5;
-    public static final int OPS_LEN = 6;
+/**
+ * Create an enumerated type with a set of 6 fields, each with an op character.
+ * You can retrieve each of their ordinals along with the length of Symbols, which is 6.
+ */
+enum Symbols {
+    LPAREN('('),
+    RPAREN(')'),
+    MUL('*'),
+    DIV('/'),
+    ADD('+'),
+    SUB('-');
 
-    // This time, here's what PEMDAS means:
-    // Parentheses open, End parentheses, Multiplication, Division, Addition, and Subtraction.
-    private static final char[] ops = {'(', ')', '*', '/', '+', '-'};
+    private final char symbol;
 
+    Symbols(char symbol) {
+        this.symbol = symbol;
+    }
+
+    /**
+     * Process the string carefully, including making numbers from digits separated by spaces.
+     *
+     * @param expression the user's expression
+     * @return an array of String tokens
+     */
     public static String[] buildExpression(String expression) {
         // First remove all existing spaces.
         expression = expression.replaceAll("\\s+", "");
@@ -194,72 +235,72 @@ class Symbols {
         List<String> newExpr = new ArrayList<>();
         StringBuilder numBuf = new StringBuilder();
         for (char c : expression.toCharArray()) {
-            switch (c) {
-                case '(', ')', '*', '/', '+', '-':
-                    if (!numBuf.isEmpty()) {
-                        newExpr.add(numBuf.toString());
-                        numBuf = new StringBuilder();
-                    }
-                    newExpr.add(String.valueOf(c));
-                    break;
-                case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9':
-                    numBuf.append(c);
-                    break;
-                default:
-                    throw new IllegalArgumentException("invalid character: " + c);
+            // The char is one of the 6 symbols.
+            if (found(String.valueOf(c)) < Symbols.values().length) {
+                if (!numBuf.isEmpty()) {
+                    newExpr.add(numBuf.toString());
+                    numBuf = new StringBuilder();
+                }
+                newExpr.add(String.valueOf(c));
+                // The char is a digit.
+            } else if (Character.isDigit(c)) {
+                numBuf.append(c);
+                // The char is illegal.
+            } else {
+                throw new IllegalArgumentException("invalid character: " + c);
             }
         }
         if (!numBuf.isEmpty()) {
             newExpr.add(numBuf.toString());
         }
-
         return newExpr.toArray(new String[0]);
-
-//        StringBuilder newExpression = new StringBuilder();
-//        // Hold numbers
-//        numBuf = new StringBuilder(" ");
-//        boolean isNumber;
-//        for (int i = 0; i < expression.length(); i++) {
-//            isNumber = true;
-//            for (char op : ops) {
-//                if (expression.charAt(i) == op) {
-//                    isNumber = false;
-//                    break;
-//                }
-//            }
-//            if (isNumber) {
-//                numBuf.append(expression.charAt(i));
-//            } else {
-//                newExpression.append(numBuf).append(" ").append(expression.charAt(i)).append(" ");
-//                numBuf = new StringBuilder(" ");
-//            }
-//        }
-//        newExpression.append(numBuf);
-//        return newExpression.toString().trim().split("\\s+");
     }
 
-    public static int getCharSize() {
-        return ops.length;
+    // Get the value's symbol.
+    public static char getOperator(int val) {
+        for (Symbols op : Symbols.values()) {
+            if (op.ordinal() == val) {
+                return op.symbol;
+            }
+        }
+        throw new IllegalArgumentException("No operator found.");
     }
 
-    public static char getSymbol(int index) {
-        return ops[index];
-    }
-
+    // Get the symbol's value.
     public static int found(String key) {
         if (key.length() == 1) {
             char ch = key.charAt(0);
-            for (int i = 0; i < ops.length; i++) {
-                if (ops[i] == ch) {
-                    return i;
+            for (Symbols op : Symbols.values()) {
+                if (op.symbol == ch) {
+                    return op.ordinal();
                 }
             }
         }
-//        for (int i = 0; i < ops.length; i++) {
-//            if (String.valueOf(ops[i]).equals(key)) {
-//                return i;
-//            }
-//        }
-        return ops.length;
+        return Symbols.values().length;
     }
 }
+
+/*
+
+I made numbers work even with spaces between the digits.
+
+I created an enum class to store variable names with different operators.
+That class has the method for storing the test expression in tokens.
+It removes all the spaces and uses StringBuilder to make numbers from space-separated digits.
+
+Tricky:
+The implementation of the calculator which uses the enum class, is moved to a class with nothing static.
+The test expressions in the main method, are passed into the validator that's in the same class.
+This "validator" catches a range of exception types.
+It also creates an instance of EvaluateExpression, and passes the expression in.
+This overall structure prevents stacks from being partially filled for the next expression.
+
+Basically, once the validateExpression method returns, everything regarding the other classes is destroyed.
+That's why if the expression errors, the instance of EvaluateExpression is gone and a new instance is created.
+
+The expression is also checked to see if parentheses are on the wrong side of a number or operator.
+Once the expression is finished in the "non-static" class, an exception is thrown if the stacks didn't clear.
+
+Operator precedence is maintained.
+
+*/
