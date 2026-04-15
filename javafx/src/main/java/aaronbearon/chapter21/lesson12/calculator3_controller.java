@@ -1,4 +1,4 @@
-package aaronbearon.chapter20.lesson11;
+package aaronbearon.chapter21.lesson12;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Aaron Blum, CIST 2372 Java 2, Lab 11
+ * Aaron Blum, CIST 2372 Java 2, Lab 12
  * Description: Make the GUI calculator perform the expression-testing logic.
  */
 public class calculator3_controller {
