@@ -1,11 +1,14 @@
 module aaronbearon {
+    requires java.sql;
+
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.media;
+    requires javafx.web;
 
     requires com.almasb.fxgl.all;
     requires eu.hansolo.tilesfx;
-    requires javafx.web;
+    requires org.jdbi.v3.core;
 
     opens aaronbearon.guitemplate;
     exports aaronbearon.guitemplate;
@@ -30,4 +33,7 @@ module aaronbearon {
 
     opens aaronbearon.chapter21.lesson12 to javafx.fxml;
     exports aaronbearon.chapter21.lesson12;
+
+    opens aaronbearon.finals2 to javafx.fxml;
+    exports aaronbearon.finals2;
 }

@@ -1,0 +1,46 @@
+imageName,brand,type,color,price,zeroToSixty,isElectric,cylinders
+BlkAstonConvertible.jpg,Aston Martin,Convertible,black,220000.0,3.6,false,8
+BlkFerrariConvertible.jpg,Ferrari,Convertible,black,300000.0,2.7,false,12
+BlkLambo.jpg,Lamborghini,Sedan,black,400000.0,2.5,false,12
+BlkLamboConvertible.jpg,Lamborghini,Convertible,black,400000.0,2.5,false,12
+BlkLincolnSUV.png,Lincoln,SUV,black,120000.0,4.2,false,8
+BlkMaserati.jpg,Maserati,Sedan,black,200000.0,3.8,false,8
+BlkMcLaren.jpg,McLaren,Sedan,black,365000.0,2.5,false,8
+BluAston.jpg,Aston Martin,Sedan,blue,220000.0,3.6,false,8
+BluFerrariConvertible.jpg,Ferrari,Convertible,blue,300000.0,2.7,false,12
+BluLamboConvertible.jpg,Lamborghini,Convertible,blue,400000.0,2.5,false,12
+BluMaserati.jpg,Maserati,Sedan,blue,200000.0,3.8,false,8
+BluMcLaren.jpg,McLaren,Sedan,blue,365000.0,2.5,false,8
+BlueCadillacSUVev.png,Cadillac,SUV,blue,100000.0,3.5,true,0
+BlueHummerSUVev.png,Hummer,SUV,blue,180000.0,2.3,true,0
+BlueLucidEv.png,Lucid,Sedan,blue,150000.0,2.3,true,0
+BlueRivianSUVev.png,Rivian,SUV,blue,80000.0,2.3,true,0
+GoldBMWev.png,BMW,Sedan,gold,250000.0,2.3,true,0
+GoldRollsRoyceEV.png,Rolls-Royce,Sedan,gold,500000.0,3.0,true,0
+GrayCyberTruckEV.png,Tesla,Pickup,gray,50000.0,2.3,true,0
+GrayHummerPicupEV.png,Hummer,Pickup,gray,180000.0,2.3,true,0
+GrayLincolnSUV.png,Lincoln,SUV,gray,120000.0,4.2,false,8
+GreenAston.jpg,Aston Martin,Sedan,green,220000.0,3.6,false,8
+GreenLambo.jpg,Lamborghini,Sedan,green,400000.0,2.5,false,12
+GreenMcLaren.jpg,McLaren,Sedan,green,365000.0,2.5,false,8
+OranMcLarConvertible.jpg,McLaren,Convertible,orange,365000.0,2.5,false,8
+OrangeHummerPickupEV.png,Hummer,Pickup,orange,180000.0,2.3,true,0
+RedAstonConvertible.jpg,Aston Martin,Convertible,red,220000.0,3.6,false,8
+RedCadillacSUVev.png,Cadillac,SUV,red,100000.0,3.5,true,0
+RedFerrari.jpg,Ferrari,Sedan,red,300000.0,2.7,false,12
+RedLucidEV.png,Lucid,Sedan,red,150000.0,2.3,true,0
+RedMaserati.jpg,Maserati,Sedan,red,200000.0,3.8,false,8
+RedMcLaren.jpg,McLaren,Sedan,red,365000.0,2.5,false,8
+RedMercedesMaybachEV.png,Mercedes-Maybach,Sedan,red,400000.0,2.3,true,0
+RedRivianSUVev.png,Rivian,SUV,red,80000.0,2.3,true,0
+WhiteFerrConvertible.jpg,Ferrari,Convertible,white,300000.0,2.7,false,12
+WhiteFerrari.jpg,Ferrari,Sedan,white,300000.0,2.7,false,12
+WhiteGenesisConvertibleEV.png,Genesis,Convertible,white,300000.0,2.3,true,0
+WhiteHummerPickupEV.png,Hummer,Pickup,white,180000.0,2.3,true,0
+WhiteHummerSUVev.png,Hummer,SUV,white,180000.0,2.3,true,0
+WhiteLambo.jpg,Lamborghini,Sedan,white,400000.0,2.5,false,12
+WhiteLucidEV.png,Lucid,Sedan,white,150000.0,2.3,true,0
+WhiteMaserConvertible.jpg,Maserati,Convertible,white,200000.0,3.8,false,8
+YellowFerrari.jpg,Ferrari,Sedan,yellow,300000.0,2.7,false,12
+YellowLambo.jpg,Lamborghini,Sedan,yellow,400000.0,2.5,false,12
+YellowMcLaren.jpg,McLaren,Sedan,yellow,365000.0,2.5,false,8

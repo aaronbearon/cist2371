@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="1200.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aaronbearon.finals2.j2fp_ExoticMoves_controller">
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <TextArea fx:id="queryTest" text="Hello!" />
+<!--      <ScrollPane BorderPane.alignment="CENTER">-->
+<!--         <content>-->
+<!--         </content>-->
+<!--      </ScrollPane>-->
+   </center>
+   <left>
+      <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <TitledPane animated="false" expanded="false" text="Brand">
+                     <content>
+                        <VBox fx:id="brands" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <CheckBox mnemonicParsing="false" text="Tesla" />
+                              <CheckBox mnemonicParsing="false" text="Lincoln" />
+                              <CheckBox mnemonicParsing="false" text="Maserati" />
+                              <CheckBox mnemonicParsing="false" text="Genesis" />
+                              <CheckBox mnemonicParsing="false" text="Lamborghini" />
+                              <CheckBox mnemonicParsing="false" text="Rolls-Royce" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" expanded="false" text="Color">
+                     <content>
+                        <VBox fx:id="colors" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <CheckBox mnemonicParsing="false" text="Black" />
+                              <CheckBox mnemonicParsing="false" text="Blue" />
+                              <CheckBox mnemonicParsing="false" text="Gold" />
+                              <CheckBox mnemonicParsing="false" text="Gray" />
+                              <CheckBox mnemonicParsing="false" text="Green" />
+                              <CheckBox mnemonicParsing="false" text="Red" />
+                              <CheckBox mnemonicParsing="false" text="White" />
+                              <CheckBox mnemonicParsing="false" text="Yellow" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" expanded="false" text="Type">
+                     <content>
+                        <VBox fx:id="types" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <RadioButton mnemonicParsing="false" text="Convertibles">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="convertibleStatus" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" text="Non-Convertibles" toggleGroup="$convertibleStatus" />
+                              <RadioButton mnemonicParsing="false" selected="true" text="Both" toggleGroup="$convertibleStatus" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" expanded="false" text="Power Train">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <RadioButton mnemonicParsing="false" text="Electric" userData="true" onAction="#updateFilters">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="powerTrain" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" text="Gas" toggleGroup="$powerTrain" userData="false" onAction="#updateFilters"/>
+                              <RadioButton mnemonicParsing="false" selected="true" text="Both" toggleGroup="$powerTrain" userData="" onAction="#updateFilters"/>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </TitledPane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </left>
+   <right>
+      <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="250.0">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="First Name" />
+                        <TextField />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Last Name" />
+                        <TextField />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Credit Card #" />
+                        <TextField />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Credit EXP Date" />
+                        <TextField />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="3 Digit Code" />
+                        <TextField />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </right>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane>
