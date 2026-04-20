@@ -16,11 +16,11 @@ public record Car(
             "McLaren", "Mercedes-Maybach", "Rivian", "Rolls-Royce", "Tesla"
     };
 
-    public static final String[] COLORS = {
-            "black", "blue", "gold", "gray", "green", "orange", "red", "white", "yellow"
-    };
-
     public static final String[] TYPES = {
             "Convertible", "Pickup", "Sedan", "SUV"
+    };
+
+    public static final String[] COLORS = {
+            "black", "blue", "gold", "gray", "green", "orange", "red", "white", "yellow"
     };
 }
