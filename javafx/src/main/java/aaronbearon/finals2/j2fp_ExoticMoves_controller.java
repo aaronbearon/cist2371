@@ -2,6 +2,7 @@ package aaronbearon.finals2;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -17,8 +18,25 @@ import java.util.Objects;
 import java.util.Set;
 
 public class j2fp_ExoticMoves_controller {
+    // Needed for split pane
+    @FXML
+    private SplitPane mainSplitPane;
+    @FXML
+    private VBox detailsPane;
+    @FXML
+    private ImageView detailImage;
+    @FXML
+    private Label detailName;
+    @FXML
+    private Label detailPrice;
+    @FXML
+    private Label detailSpecs;
+
+    // Main image area field
     @FXML
     private FlowPane inventoryFlowPane;
+
+    // Filter fields
     @FXML
     private VBox brands;
     @FXML
@@ -126,8 +144,10 @@ public class j2fp_ExoticMoves_controller {
                 Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
                 iv.setImage(img);
 
-                // Add the card to your FlowPane
                 inventoryFlowPane.getChildren().add(card);
+                card.setOnMouseClicked(event -> showCarDetails(car));
+                // Change mouse shape on hover
+                card.setCursor(Cursor.HAND);
 
             } catch (IOException e) {
                 System.err.println("Error loading car card: " + e.getMessage());
@@ -153,5 +173,35 @@ public class j2fp_ExoticMoves_controller {
             return null;
         }
         return Boolean.valueOf(v);
+    }
+
+    private void showCarDetails(Car car) {
+        // 1. Open the split to roughly 60/40 or 70/30
+        mainSplitPane.setDividerPositions(0.65);
+
+        // 2. Set the Image
+        String imagePath = "/aaronbearon/finals2/" + car.imageName();
+        var stream = getClass().getResourceAsStream(imagePath);
+        if (stream != null) {
+            detailImage.setImage(new Image(stream));
+            // Make the image fill width of the right panel
+            detailImage.fitWidthProperty().bind(detailsPane.widthProperty().subtract(40));
+        }
+
+        // 3. Populate Text
+        detailName.setText(car.brand() + " " + car.type());
+        detailPrice.setText(String.format("$%,.0f", car.price()));
+
+        String specs = String.format(
+                "Color: %s\n" +
+                        "0-60 mph: %.1fs\n" +
+                        "Cylinders: %d\n" +
+                        "Engine: %s",
+                car.color(),
+                car.zeroToSixty(),
+                car.cylinders(),
+                car.isElectric() ? "Electric Motor" : "Internal Combustion"
+        );
+        detailSpecs.setText(specs);
     }
 }
