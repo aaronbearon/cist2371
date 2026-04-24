@@ -9,11 +9,18 @@
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </top>
    <center>
-      <TextArea fx:id="queryTest" text="Hello!" />
-<!--      <ScrollPane BorderPane.alignment="CENTER">-->
-<!--         <content>-->
-<!--         </content>-->
-<!--      </ScrollPane>-->
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+         <content>
+            <FlowPane fx:id="inventoryFlowPane" hgap="15.0" prefWrapLength="800.0" vgap="15.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+
+               <children>
+               </children>
+            </FlowPane>
+         </content>
+      </ScrollPane>
    </center>
    <left>
       <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -44,13 +51,10 @@
                      <content>
                         <VBox fx:id="types" prefWidth="100.0" spacing="5.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="Convertibles">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="convertibleStatus" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Non-Convertibles" toggleGroup="$convertibleStatus" />
-                              <RadioButton mnemonicParsing="false" selected="true" text="Both" toggleGroup="$convertibleStatus" />
+                              <CheckBox mnemonicParsing="false" text="Convertible" />
+                              <CheckBox mnemonicParsing="false" text="Pickup" />
+                              <CheckBox mnemonicParsing="false" text="Sedan" />
+                              <CheckBox mnemonicParsing="false" text="SUV" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -122,6 +126,21 @@
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
+                        </VBox>
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" layoutX="20.0" layoutY="326.0" text="Number of Cylinders">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="5.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <Label fx:id="cylinderMinLabel" text="Min: 0" />
+                              <Slider fx:id="cylinderMin" blockIncrement="1.0" majorTickUnit="4.0" max="12.0" onKeyReleased="#updateFilters" onMouseReleased="#updateFilters" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                              <Label fx:id="cylinderMaxLabel" text="Max: 12" />
+                              <Slider fx:id="cylinderMax" blockIncrement="1.0" majorTickUnit="4.0" max="12.0" onKeyReleased="#updateFilters" onMouseReleased="#updateFilters" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="12.0" />
+                           </children>
                         </VBox>
                      </content>
                   </TitledPane>

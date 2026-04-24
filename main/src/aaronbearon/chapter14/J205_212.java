@@ -47,11 +47,13 @@ class Pentagon extends Pane {
 
         // Add points to the polygon list
         //* Add 5 instead of 6 points to the polygon list
-        for (int i = 0; i < 5; i++) {
+        int sides = 8;
+        int rot = 3;
+        for (int i = 0; i < sides; i++) {
             //* Math PI is now divided by 5
             //* Add 90 degrees counterclockwise for odd polygon to put point on top. (base on bottom)
-            list.add(centerX + radius * Math.cos((2 * i * Math.PI / 5) + (Math.PI / 2)));
-            list.add(centerY - radius * Math.sin((2 * i * Math.PI / 5) + (Math.PI / 2)));
+            list.add(centerX + radius * Math.cos((rot * 2 * i * Math.PI / sides) + (Math.PI / 2)));
+            list.add(centerY - radius * Math.sin((rot * 2 * i * Math.PI / sides) + (Math.PI / 2)));
         }
 
         getChildren().clear(); // Clear pane

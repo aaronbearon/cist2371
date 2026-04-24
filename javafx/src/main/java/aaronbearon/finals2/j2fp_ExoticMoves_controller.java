@@ -1,15 +1,24 @@
 package aaronbearon.finals2;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public class j2fp_ExoticMoves_controller {
+    @FXML
+    private FlowPane inventoryFlowPane;
     @FXML
     private VBox brands;
     @FXML
@@ -34,10 +43,18 @@ public class j2fp_ExoticMoves_controller {
     private Label timeMinLabel;
     @FXML
     private Label timeMaxLabel;
+    @FXML
+    private Slider cylinderMin;
+    @FXML
+    private Slider cylinderMax;
+    @FXML
+    private Label cylinderMinLabel;
+    @FXML
+    private Label cylinderMaxLabel;
 
     private final Database database = new Database();
 
-    public void initialize() throws Exception {
+    public void initialize() {
         // TODO: we could actually initialize these checkboxes by using database queries instead of constants.
         initializeCheckBoxOptions(brands, Car.BRANDS);
         initializeCheckBoxOptions(types, Car.TYPES);
@@ -56,7 +73,7 @@ public class j2fp_ExoticMoves_controller {
             CheckBox cb = new CheckBox(option);
 
             // Add a listener to trigger whenever the value changes.
-            cb.setOnAction((e) -> updateFilters());
+            cb.setOnAction((_) -> updateFilters());
             parent.getChildren().add(cb);
         }
     }
@@ -67,6 +84,8 @@ public class j2fp_ExoticMoves_controller {
         priceMaxLabel.setText(String.format("Max: $%,.0f", priceMax.getValue()));
         timeMinLabel.setText(String.format("Min: %,.1f", timeMin.getValue()));
         timeMaxLabel.setText(String.format("Max: %,.1f", timeMax.getValue()));
+        cylinderMinLabel.setText(String.format("Min: %,d", (int) cylinderMin.getValue()));
+        cylinderMaxLabel.setText(String.format("Max: %,d", (int) cylinderMax.getValue()));
 
         // Force a refresh on the car list.
         List<Car> cars = database.getFilteredCars(
@@ -77,19 +96,50 @@ public class j2fp_ExoticMoves_controller {
                 priceMax.getValue(),
                 timeMin.getValue(),
                 timeMax.getValue(),
-                isElectricValue()
+                isElectricValue(),
+                (int) cylinderMin.getValue(),
+                (int) cylinderMax.getValue()
         );
 
-        // TODO: actually build some kind of list display with images on all the cars. This is just debug text.
-        queryTest.setText(String.join("\n", cars.stream().map(Car::toString).toList()));
+        displayCars(cars);
+    }
+
+    private void displayCars(List<Car> cars) {
+        inventoryFlowPane.getChildren().clear();
+
+        for (Car car : cars) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("car_card.fxml"));
+                VBox card = loader.load();
+
+                // Find elements by ID (excluding performance now)
+                Label name = (Label) card.lookup("#carName");
+                ImageView iv = (ImageView) card.lookup("#carImage");
+                Label price = (Label) card.lookup("#carPrice");
+
+                // Populate the data
+                name.setText(car.brand() + " " + car.type());
+                price.setText(String.format("$%,.0f", car.price()));
+
+                // Load Image
+                String imagePath = "/aaronbearon/finals2/" + car.imageName();
+                Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+                iv.setImage(img);
+
+                // Add the card to your FlowPane
+                inventoryFlowPane.getChildren().add(card);
+
+            } catch (IOException e) {
+                System.err.println("Error loading car card: " + e.getMessage());
+            }
+        }
     }
 
     // Turns a list of checkboxes into a list of "selected" string values like brands or colors.
-    private List<String> selectedCheckboxItems(Parent parent) {
-        List<String> result = new ArrayList<>();
+    private Set<String> selectedCheckboxItems(Parent parent) {
+        Set<String> result = new HashSet<>();
         for (Node child : parent.getChildrenUnmodifiable()) {
-            CheckBox cb = (CheckBox) child;
-            if (cb.isSelected()) {
+            if (child instanceof CheckBox cb && cb.isSelected()) {
                 result.add(cb.getText());
             }
         }
