@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -18,9 +20,17 @@ import java.util.Objects;
 import java.util.Set;
 
 public class j2fp_ExoticMoves_controller {
-    // Needed for split pane
+    // Right hand side purchase flow.
     @FXML
-    private SplitPane mainSplitPane;
+    private ScrollPane purchasePanel;
+    @FXML
+    private HBox purchaseButtonPane;
+    @FXML
+    private VBox purchaseForm;
+    @FXML
+    private VBox receipt;
+
+    // Car details
     @FXML
     private VBox detailsPane;
     @FXML
@@ -31,6 +41,33 @@ public class j2fp_ExoticMoves_controller {
     private Label detailPrice;
     @FXML
     private Label detailSpecs;
+
+    // Purchase form
+    @FXML
+    private TextField firstName;
+    @FXML
+    private TextField lastName;
+    @FXML
+    private TextField ccNumber;
+    @FXML
+    private TextField ccExpDate;
+    @FXML
+    private TextField cvvCode;
+
+    @FXML
+    private Label errFirstName;
+    @FXML
+    private Label errLastName;
+    @FXML
+    private Label errCcNum;
+    @FXML
+    private Label errCcExpDate;
+    @FXML
+    private Label errCvvCode;
+
+    @FXML
+    private Button completeButton;
+
 
     // Main image area field
     @FXML
@@ -72,11 +109,17 @@ public class j2fp_ExoticMoves_controller {
 
     private final Database database = new Database();
 
+    private Car selectedCar = null;
+    private PurchaseState purchaseState = PurchaseState.UNSELECTED;
+
+
     public void initialize() {
         // TODO: we could actually initialize these checkboxes by using database queries instead of constants.
         initializeCheckBoxOptions(brands, Car.BRANDS);
         initializeCheckBoxOptions(types, Car.TYPES);
         initializeCheckBoxOptions(colors, Car.COLORS);
+
+        updatePurchaseFlow();
 
         // Set up the initial filters.
         updateFilters();
@@ -122,6 +165,43 @@ public class j2fp_ExoticMoves_controller {
         displayCars(cars);
     }
 
+    public void updatePurchaseFlow() {
+        if (purchaseState == PurchaseState.UNSELECTED) {
+            purchasePanel.setVisible(false);
+            purchasePanel.setManaged(false);
+        } else {
+            purchasePanel.setVisible(true);
+            purchasePanel.setManaged(true);
+        }
+
+        if (purchaseState == PurchaseState.SELECTED) {
+            purchaseButtonPane.setVisible(true);
+            purchaseButtonPane.setManaged(true);
+        } else {
+            purchaseButtonPane.setVisible(false);
+            purchaseButtonPane.setManaged(false);
+        }
+
+        if (purchaseState == PurchaseState.FORM) {
+            purchaseForm.setVisible(true);
+            purchaseForm.setManaged(true);
+        } else {
+            purchaseForm.setVisible(false);
+            purchaseForm.setManaged(false);
+        }
+
+        if (purchaseState == PurchaseState.RECEIPT) {
+            receipt.setVisible(true);
+            receipt.setManaged(true);
+        } else {
+            receipt.setVisible(false);
+            receipt.setManaged(false);
+        }
+
+        // Make sure the form errors up to date.
+        formTextChanged();
+    }
+
     private void displayCars(List<Car> cars) {
         inventoryFlowPane.getChildren().clear();
 
@@ -140,12 +220,11 @@ public class j2fp_ExoticMoves_controller {
                 price.setText(String.format("$%,.0f", car.price()));
 
                 // Load Image
-                String imagePath = "/aaronbearon/finals2/" + car.imageName();
-                Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+                Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(car.imageName())));
                 iv.setImage(img);
 
                 inventoryFlowPane.getChildren().add(card);
-                card.setOnMouseClicked(event -> showCarDetails(car));
+                card.setOnMouseClicked(_ -> showCarDetails(car));
                 // Change mouse shape on hover
                 card.setCursor(Cursor.HAND);
 
@@ -176,19 +255,18 @@ public class j2fp_ExoticMoves_controller {
     }
 
     private void showCarDetails(Car car) {
-        // 1. Open the split to roughly 60/40 or 70/30
-        mainSplitPane.setDividerPositions(0.65);
+        selectedCar = car;
+        purchaseState = PurchaseState.SELECTED;
 
-        // 2. Set the Image
-        String imagePath = "/aaronbearon/finals2/" + car.imageName();
-        var stream = getClass().getResourceAsStream(imagePath);
+        // 1. Set the Image
+        var stream = getClass().getResourceAsStream(car.imageName());
         if (stream != null) {
             detailImage.setImage(new Image(stream));
             // Make the image fill width of the right panel
             detailImage.fitWidthProperty().bind(detailsPane.widthProperty().subtract(40));
         }
 
-        // 3. Populate Text
+        // 2. Populate Text
         detailName.setText(car.brand() + " " + car.type());
         detailPrice.setText(String.format("$%,.0f", car.price()));
 
@@ -203,5 +281,94 @@ public class j2fp_ExoticMoves_controller {
                 car.isElectric() ? "Electric Motor" : "Internal Combustion"
         );
         detailSpecs.setText(specs);
+
+        updatePurchaseFlow();
+    }
+
+    @FXML
+    public void updateMinCylinders() {
+        if (cylinderMax.getValue() < cylinderMin.getValue()) {
+            cylinderMax.setValue(cylinderMin.getValue());
+        }
+        updateFilters();
+    }
+
+    @FXML
+    public void updateMaxCylinders() {
+        if (cylinderMax.getValue() < cylinderMin.getValue()) {
+            cylinderMin.setValue(cylinderMax.getValue());
+        }
+        updateFilters();
+    }
+
+    @FXML
+    public void updateMinPrice() {
+        if (priceMax.getValue() < priceMin.getValue()) {
+            priceMax.setValue(priceMin.getValue());
+        }
+        updateFilters();
+    }
+
+    @FXML
+    public void updateMaxPrice() {
+        if (priceMax.getValue() < priceMin.getValue()) {
+            priceMin.setValue(priceMax.getValue());
+        }
+        updateFilters();
+    }
+
+    @FXML
+    public void updateMinTime() {
+        if (timeMax.getValue() < timeMin.getValue()) {
+            timeMax.setValue(timeMin.getValue());
+        }
+        updateFilters();
+    }
+
+    @FXML
+    public void updateMaxTime() {
+        if (timeMax.getValue() < timeMin.getValue()) {
+            timeMin.setValue(timeMax.getValue());
+        }
+        updateFilters();
+    }
+
+    @FXML
+    public void closeDetailsClicked() {
+        purchaseState = PurchaseState.UNSELECTED;
+        updatePurchaseFlow();
+    }
+
+    @FXML
+    public void purchaseButtonClicked() {
+        purchaseState = PurchaseState.FORM;
+        updatePurchaseFlow();
+    }
+
+    @FXML
+    public void completeButtonClicked() {
+        purchaseState = PurchaseState.RECEIPT;
+        updatePurchaseFlow();
+    }
+
+    @FXML
+    public void formTextChanged() {
+        errFirstName.setText("");
+        errLastName.setText("");
+        errCcNum.setText("");
+        errCcExpDate.setText("");
+        errCvvCode.setText("");
+
+        // TODO: check every input field.
+        // If any fields contain non-empty, invalid data, update the error label. Otherwise, clear the error label.
+
+        // TODO: if every field is valid and no fields are empty, enable the complete purchase button.
+    }
+
+    private enum PurchaseState {
+        UNSELECTED,
+        SELECTED,
+        FORM,
+        RECEIPT
     }
 }
