@@ -1,0 +1,32 @@
+.plaincircle {
+    /* Changed white circles to gray */
+    -fx-fill: gray;
+    -fx-stroke: black;
+}
+
+.circleborder {
+    -fx-stroke-width: 5;
+    -fx-stroke-dash-array: 12 2 4 2;
+}
+
+.border {
+    -fx-border-color: black;
+    -fx-border-width: 5;
+}
+
+/* Replaced colored circles
+    with cyan, magenta, and yellow*/
+#cyancircle {
+    -fx-fill: cyan;
+    -fx-stroke: cyan;
+}
+
+#magentacircle {
+    -fx-fill: magenta;
+    -fx-stroke: magenta;
+}
+
+#yellowcircle {
+    -fx-fill: yellow;
+    -fx-stroke: yellow;
+}

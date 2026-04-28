@@ -1,9 +1,10 @@
 ### IntelliJ IDEA ###
 .idea/
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+.mvn/
+target/
+*.iws
 *.iml
+*.ipr
 
 ### Eclipse ###
 .apt_generated
@@ -14,8 +15,6 @@ out/
 .springBeans
 .sts4-cache
 bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
 
 ### NetBeans ###
 /nbproject/private/
@@ -29,3 +28,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+.claude
