@@ -10,10 +10,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -50,10 +51,11 @@ public class j2fp_ExoticMoves_controller {
     @FXML
     private TextField ccNumber;
     @FXML
-    private TextField ccExpDate;
+    private DatePicker ccExpDate;
     @FXML
     private TextField cvvCode;
 
+    // Purchase error message
     @FXML
     private Label errFirstName;
     @FXML
@@ -107,6 +109,16 @@ public class j2fp_ExoticMoves_controller {
     @FXML
     private Label cylinderMaxLabel;
 
+    // Final Receipt
+    @FXML
+    private Label receiptCustomer;
+    @FXML
+    private Label receiptDateTime;
+    @FXML
+    private Label receiptCarName;
+    @FXML
+    private Label receiptCarPrice;
+
     private final Database database = new Database();
 
     private Car selectedCar = null;
@@ -114,7 +126,6 @@ public class j2fp_ExoticMoves_controller {
 
 
     public void initialize() {
-        // TODO: we could actually initialize these checkboxes by using database queries instead of constants.
         initializeCheckBoxOptions(brands, Car.BRANDS);
         initializeCheckBoxOptions(types, Car.TYPES);
         initializeCheckBoxOptions(colors, Car.COLORS);
@@ -123,10 +134,14 @@ public class j2fp_ExoticMoves_controller {
 
         // Set up the initial filters.
         updateFilters();
-    }
 
-    @FXML
-    private TextArea queryTest;
+        // The 3 parameters are Observable, oldValue, and newValue
+        firstName.textProperty().addListener((_, _, _) -> formTextChanged());
+        lastName.textProperty().addListener((_, _, _) -> formTextChanged());
+        ccNumber.textProperty().addListener((_, _, _) -> formTextChanged());
+        ccExpDate.valueProperty().addListener((_, _, _) -> formTextChanged());
+        cvvCode.textProperty().addListener((_, _, _) -> formTextChanged());
+    }
 
     public void initializeCheckBoxOptions(VBox parent, String[] options) {
         parent.getChildren().clear();
@@ -255,6 +270,7 @@ public class j2fp_ExoticMoves_controller {
     }
 
     private void showCarDetails(Car car) {
+        resetForm();
         selectedCar = car;
         purchaseState = PurchaseState.SELECTED;
 
@@ -271,10 +287,11 @@ public class j2fp_ExoticMoves_controller {
         detailPrice.setText(String.format("$%,.0f", car.price()));
 
         String specs = String.format(
-                "Color: %s\n" +
-                        "0-60 mph: %.1fs\n" +
-                        "Cylinders: %d\n" +
-                        "Engine: %s",
+                """
+                        Color: %s
+                        0-60 mph: %.1fs
+                        Cylinders: %d
+                        Engine: %s""",
                 car.color(),
                 car.zeroToSixty(),
                 car.cylinders(),
@@ -335,6 +352,7 @@ public class j2fp_ExoticMoves_controller {
 
     @FXML
     public void closeDetailsClicked() {
+        resetForm();
         purchaseState = PurchaseState.UNSELECTED;
         updatePurchaseFlow();
     }
@@ -347,6 +365,18 @@ public class j2fp_ExoticMoves_controller {
 
     @FXML
     public void completeButtonClicked() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy | h:mm a");
+        String formattedDate = now.format(formatter);
+
+        receiptCustomer.setText("CUSTOMER: " + firstName.getText().toUpperCase() + " " + lastName.getText().toUpperCase());
+        receiptDateTime.setText("PURCHASED: " + formattedDate);
+
+        if (selectedCar != null) {
+            receiptCarName.setText(selectedCar.brand().toUpperCase() + " " + selectedCar.type().toUpperCase());
+            receiptCarPrice.setText(String.format("TOTAL: $%,.2f", selectedCar.price()));
+        }
+
         purchaseState = PurchaseState.RECEIPT;
         updatePurchaseFlow();
     }
@@ -358,11 +388,85 @@ public class j2fp_ExoticMoves_controller {
         errCcNum.setText("");
         errCcExpDate.setText("");
         errCvvCode.setText("");
+        boolean isValid = true;
+        completeButton.setDisable(true);
 
-        // TODO: check every input field.
-        // If any fields contain non-empty, invalid data, update the error label. Otherwise, clear the error label.
+        // If any fields contain non-empty, invalid data, update the error label.
+        // Otherwise, clear the error label.
+        if (isIllegalName(firstName.getText())) {
+            isValid = false;
+            if (!firstName.getText().isEmpty()) {
+                errFirstName.setText("Invalid First Name");
+            }
+        }
 
-        // TODO: if every field is valid and no fields are empty, enable the complete purchase button.
+        if (isIllegalName(lastName.getText())) {
+            isValid = false;
+            if (!lastName.getText().isEmpty()) {
+                errLastName.setText("Error, Invalid Last Name");
+            }
+        }
+
+        if (isIllegalNumeric(ccNumber.getText(), 16)) {
+            isValid = false;
+            if (!ccNumber.getText().isEmpty()) {
+                errCcNum.setText("Error, Invalid Credit Card Number");
+            }
+        }
+
+        if (!isValidDate(ccExpDate.getValue())) {
+            isValid = false;
+            if (ccExpDate.getValue() != null) {
+                errCcExpDate.setText("Error, Invalid Date");
+            }
+        }
+
+        if (cvvCode.getText().isEmpty() || isIllegalNumeric(cvvCode.getText(), 3)) {
+            isValid = false;
+            if (!cvvCode.getText().isEmpty() && isIllegalNumeric(cvvCode.getText(), 3)) {
+                errCvvCode.setText("Error, Invalid Credit Card Code");
+            }
+        }
+
+        completeButton.setDisable(!isValid);
+    }
+
+    // Check that the first/last name contains only letters.
+    private boolean isIllegalName(String name) {
+        // Regex: ^ (start), [a-zA-Z] (letters), + (one or more), $ (end)
+        return name == null || !name.matches("^[a-zA-Z]+$");
+    }
+
+    // Check that there are only numbers and the number count matches.
+    private boolean isIllegalNumeric(String value, int requiredLength) {
+        // Regex: \\d (digit), {n} (exactly n times)
+        String regex = "^\\d{" + requiredLength + "}$";
+        return value == null || !value.matches(regex);
+    }
+
+    // Check for a valid date.
+    private boolean isValidDate(java.time.LocalDate dateValue) {
+        // Check if they picked a date AND if that date is today or in the future
+        return dateValue != null && !dateValue.isBefore(java.time.LocalDate.now());
+    }
+
+    // Clear the form anytime the right side image view is closed or another car is clicked.
+    private void resetForm() {
+        // Clear the text fields
+        firstName.clear();
+        lastName.clear();
+        ccNumber.clear();
+        ccExpDate.setValue(null);
+        cvvCode.clear();
+
+        ccExpDate.getEditor().clear();
+
+        // Clear error labels
+        errFirstName.setText("");
+        errLastName.setText("");
+        errCcNum.setText("");
+        errCcExpDate.setText("");
+        errCvvCode.setText("");
     }
 
     private enum PurchaseState {
