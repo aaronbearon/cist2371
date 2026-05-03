@@ -1,16 +1,17 @@
 package aaronbearon.finals2;
 
-import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.core.mapper.reflect.ConstructorMapper;
+import org.jetbrains.annotations.Nullable;
 
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 
+/**
+ * This class holds the whole list of cars.
+ */
 public class Database {
-    private static final Car[] CARS = new Car[]{
+    private static final List<Car> CARS = Arrays.asList(
             new Car("BlkAstonConvertible.jpg", "Aston Martin", "Convertible", "black", 220000.0, 3.6, false, 8),
             new Car("BlkFerrariConvertible.jpg", "Ferrari", "Convertible", "black", 300000.0, 2.7, false, 12),
             new Car("BlkLambo.jpg", "Lamborghini", "Sedan", "black", 400000.0, 2.5, false, 12),
@@ -56,9 +57,7 @@ public class Database {
             new Car("YellowFerrari.jpg", "Ferrari", "Sedan", "yellow", 300000.0, 2.7, false, 12),
             new Car("YellowLambo.jpg", "Lamborghini", "Sedan", "yellow", 400000.0, 2.5, false, 12),
             new Car("YellowMcLaren.jpg", "McLaren", "Sedan", "yellow", 365000.0, 2.5, false, 8)
-    };
-
-    private static final List<Car> allCars = Arrays.asList(CARS);
+    );
 
     // Query the database for a list of cars matching the selected filters.
     public List<Car> getFilteredCars(Set<String> selectedBrands,
@@ -66,10 +65,10 @@ public class Database {
                                      Set<String> selectedColors,
                                      double priceMin, double priceMax,
                                      double timeMin, double timeMax,
-                                     Boolean isElectric,
+                                     @Nullable Boolean isElectric,
                                      int cylinderMin, int cylinderMax) {
 
-        return allCars.stream()
+        return CARS.stream()
                 // Filter by Brand (If set is empty, include all)
                 .filter(car -> selectedBrands.isEmpty() || selectedBrands.contains(car.brand()))
 
@@ -91,6 +90,7 @@ public class Database {
                 // Filter by Cylinder Range
                 .filter(car -> car.cylinders() >= cylinderMin && car.cylinders() <= cylinderMax)
 
+                // Sort the cars by Price ascending
                 .sorted(Comparator.comparingDouble(Car::price)).toList();
     }
 }

@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -20,6 +21,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Aaron Blum, CIST 2372 Java 2, Final Project
+ * Description: Refer to the Summary
+ */
 public class j2fp_ExoticMoves_controller {
     // Right hand side purchase flow.
     @FXML
@@ -69,7 +74,6 @@ public class j2fp_ExoticMoves_controller {
 
     @FXML
     private Button completeButton;
-
 
     // Main image area field
     @FXML
@@ -141,6 +145,12 @@ public class j2fp_ExoticMoves_controller {
         ccNumber.textProperty().addListener((_, _, _) -> formTextChanged());
         ccExpDate.valueProperty().addListener((_, _, _) -> formTextChanged());
         cvvCode.textProperty().addListener((_, _, _) -> formTextChanged());
+
+        firstName.focusedProperty().addListener((_, _, _) -> formTextChanged());
+        lastName.focusedProperty().addListener((_, _, _) -> formTextChanged());
+        ccNumber.focusedProperty().addListener((_, _, _) -> formTextChanged());
+        ccExpDate.focusedProperty().addListener((_, _, _) -> formTextChanged());
+        cvvCode.focusedProperty().addListener((_, _, _) -> formTextChanged());
     }
 
     public void initializeCheckBoxOptions(VBox parent, String[] options) {
@@ -180,6 +190,7 @@ public class j2fp_ExoticMoves_controller {
         displayCars(cars);
     }
 
+    // Show/hide different nodes based on the PurchaseState enum.
     public void updatePurchaseFlow() {
         if (purchaseState == PurchaseState.UNSELECTED) {
             purchasePanel.setVisible(false);
@@ -218,6 +229,7 @@ public class j2fp_ExoticMoves_controller {
     }
 
     private void displayCars(List<Car> cars) {
+        // Clear the list before determining the cars to display
         inventoryFlowPane.getChildren().clear();
 
         for (Car car : cars) {
@@ -225,7 +237,7 @@ public class j2fp_ExoticMoves_controller {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("car_card.fxml"));
                 VBox card = loader.load();
 
-                // Find elements by ID (excluding performance now)
+                // Find elements by ID
                 Label name = (Label) card.lookup("#carName");
                 ImageView iv = (ImageView) card.lookup("#carImage");
                 Label price = (Label) card.lookup("#carPrice");
@@ -274,7 +286,7 @@ public class j2fp_ExoticMoves_controller {
         selectedCar = car;
         purchaseState = PurchaseState.SELECTED;
 
-        // 1. Set the Image
+        // Set the Image
         var stream = getClass().getResourceAsStream(car.imageName());
         if (stream != null) {
             detailImage.setImage(new Image(stream));
@@ -282,7 +294,7 @@ public class j2fp_ExoticMoves_controller {
             detailImage.fitWidthProperty().bind(detailsPane.widthProperty().subtract(40));
         }
 
-        // 2. Populate Text
+        // Populate Text
         detailName.setText(car.brand() + " " + car.type());
         detailPrice.setText(String.format("$%,.0f", car.price()));
 
@@ -363,6 +375,7 @@ public class j2fp_ExoticMoves_controller {
         updatePurchaseFlow();
     }
 
+    // Make the receipt
     @FXML
     public void completeButtonClicked() {
         LocalDateTime now = LocalDateTime.now();
@@ -377,77 +390,21 @@ public class j2fp_ExoticMoves_controller {
             receiptCarPrice.setText(String.format("TOTAL: $%,.2f", selectedCar.price()));
         }
 
+        // Print the receipt
         purchaseState = PurchaseState.RECEIPT;
         updatePurchaseFlow();
     }
 
     @FXML
     public void formTextChanged() {
-        errFirstName.setText("");
-        errLastName.setText("");
-        errCcNum.setText("");
-        errCcExpDate.setText("");
-        errCvvCode.setText("");
-        boolean isValid = true;
-        completeButton.setDisable(true);
-
-        // If any fields contain non-empty, invalid data, update the error label.
-        // Otherwise, clear the error label.
-        if (isIllegalName(firstName.getText())) {
-            isValid = false;
-            if (!firstName.getText().isEmpty()) {
-                errFirstName.setText("Invalid First Name");
-            }
-        }
-
-        if (isIllegalName(lastName.getText())) {
-            isValid = false;
-            if (!lastName.getText().isEmpty()) {
-                errLastName.setText("Error, Invalid Last Name");
-            }
-        }
-
-        if (isIllegalNumeric(ccNumber.getText(), 16)) {
-            isValid = false;
-            if (!ccNumber.getText().isEmpty()) {
-                errCcNum.setText("Error, Invalid Credit Card Number");
-            }
-        }
-
-        if (!isValidDate(ccExpDate.getValue())) {
-            isValid = false;
-            if (ccExpDate.getValue() != null) {
-                errCcExpDate.setText("Error, Invalid Date");
-            }
-        }
-
-        if (cvvCode.getText().isEmpty() || isIllegalNumeric(cvvCode.getText(), 3)) {
-            isValid = false;
-            if (!cvvCode.getText().isEmpty() && isIllegalNumeric(cvvCode.getText(), 3)) {
-                errCvvCode.setText("Error, Invalid Credit Card Code");
-            }
-        }
-
+        boolean isValid = new NameFieldValidator(firstName, errFirstName).check(firstName.getText());
+        // Note: Use a single & to prevent short-circuit evaluation.
+        // Each new validator must be checked to determine whether that error message is necessary.
+        isValid = isValid & new NameFieldValidator(lastName, errLastName).check(lastName.getText());
+        isValid = isValid & new NumValidator(ccNumber, 16, errCcNum).check(ccNumber.getText());
+        isValid = isValid & new ExpDateValidator(ccExpDate, errCcExpDate).check(ccExpDate.getValue());
+        isValid = isValid & new NumValidator(cvvCode, 3, errCvvCode).check(cvvCode.getText());
         completeButton.setDisable(!isValid);
-    }
-
-    // Check that the first/last name contains only letters.
-    private boolean isIllegalName(String name) {
-        // Regex: ^ (start), [a-zA-Z] (letters), + (one or more), $ (end)
-        return name == null || !name.matches("^[a-zA-Z]+$");
-    }
-
-    // Check that there are only numbers and the number count matches.
-    private boolean isIllegalNumeric(String value, int requiredLength) {
-        // Regex: \\d (digit), {n} (exactly n times)
-        String regex = "^\\d{" + requiredLength + "}$";
-        return value == null || !value.matches(regex);
-    }
-
-    // Check for a valid date.
-    private boolean isValidDate(java.time.LocalDate dateValue) {
-        // Check if they picked a date AND if that date is today or in the future
-        return dateValue != null && !dateValue.isBefore(java.time.LocalDate.now());
     }
 
     // Clear the form anytime the right side image view is closed or another car is clicked.
@@ -476,3 +433,112 @@ public class j2fp_ExoticMoves_controller {
         RECEIPT
     }
 }
+
+/**
+ * This abstract class is used for validating the content of a field.
+ * Subclasses specify the type of field and the validation conditions.
+ * If the conditions aren't met, an exception instance is stored in a variable in the check method.
+ *
+ * @param <T> Generic type. Subclasses provide a concrete type.
+ */
+abstract class FieldValidator<T> {
+    private final Node input;
+    private final Label errLabel;
+
+    public FieldValidator(Node input, Label errLabel) {
+        this.input = input;
+        this.errLabel = errLabel;
+    }
+
+    // Every FieldValidator instance needs to handle the validation conditions.
+    // This method isn't overridden in subclasses.
+    public boolean check(T value) {
+        Exception err = validate(value);
+        if (err == null) {
+            return true;
+        }
+        if (input.isFocused()) {
+            errLabel.setText(""); // ignore errors if the user is typing
+        } else {
+            errLabel.setText(err.getMessage());
+        }
+        return false;
+    }
+
+    // Every subclass must provide its own validation conditions.
+    public abstract Exception validate(T value);
+}
+
+/**
+ * Check the text field for a non-empty String of only letters.
+ */
+class NameFieldValidator extends FieldValidator<String> {
+    public NameFieldValidator(TextField input, Label errLabel) {
+        super(input, errLabel);
+    }
+
+    @Override
+    public Exception validate(String value) {
+        if (value.isEmpty()) {
+            return new Exception(); // no error message; but don't enable the button
+        }
+
+        // Regex: ^ (start), [a-zA-Z] (letters), + (one or more), $ (end)
+        if (!value.matches("^[a-zA-Z]+$")) {
+            return new Exception("Error, Invalid Name");
+        }
+        return null;
+    }
+}
+
+/**
+ * Check the text field for a non-empty String of only digits.
+ */
+class NumValidator extends FieldValidator<String> {
+    private final int count;
+
+    public NumValidator(TextField input, int count, Label errLabel) {
+        super(input, errLabel);
+        this.count = count;
+    }
+
+    @Override
+    public Exception validate(String value) {
+        if (value.isEmpty()) {
+            return new Exception(); // no error message; but don't enable the button
+        }
+        if (!value.matches("^\\d{" + count + "}$")) {
+            return new Exception("Error, expected " + count + " digit number");
+        }
+        return null;
+    }
+}
+
+/**
+ * Check the date picker for a non-empty valid date not before the current date.
+ */
+class ExpDateValidator extends FieldValidator<LocalDate> {
+    public ExpDateValidator(DatePicker input, Label errLabel) {
+        super(input, errLabel);
+    }
+
+    @Override
+    public Exception validate(LocalDate value) {
+        if (value == null) {
+            return new Exception(); // no error message; but don't enable the button
+        }
+        if (value.isBefore(LocalDate.now())) {
+            return new Exception("Credit Card Expired");
+        }
+        if (value.isAfter(LocalDate.now().plusYears(10))) {
+            return new Exception("Credit Card Expiration Invalid");
+        }
+        return null;
+    }
+}
+
+/*
+
+Refer to documentation and updated doc.
+
+*/

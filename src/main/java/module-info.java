@@ -7,4 +7,5 @@ open module aaronbearon {
     requires com.almasb.fxgl.all;
     requires eu.hansolo.tilesfx;
     requires org.jdbi.v3.core;
+    requires annotations;
 }

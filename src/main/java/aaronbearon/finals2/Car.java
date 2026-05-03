@@ -1,5 +1,8 @@
 package aaronbearon.finals2;
 
+/**
+ * This record defines a car and its attributes.
+ */
 public record Car(
         String imageName,
         String brand,

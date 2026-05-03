@@ -11,14 +11,12 @@
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </padding>
-    <children>
-        <Label fx:id="carName" style="-fx-font-weight: bold; -fx-font-size: 14;" text="Lamborghini"/>
+    <Label fx:id="carName" style="-fx-font-weight: bold; -fx-font-size: 14;" text="Lamborghini"/>
 
-        <StackPane minWidth="180.0" prefWidth="180.0" maxWidth="180.0"
-                   minHeight="100.0" prefHeight="100.0" maxHeight="100.0">
-            <ImageView fx:id="carImage" fitWidth="180.0" fitHeight="100" preserveRatio="true"/>
-        </StackPane>
+    <StackPane minWidth="180.0" prefWidth="180.0" maxWidth="180.0"
+               minHeight="100.0" prefHeight="100.0" maxHeight="100.0">
+        <ImageView fx:id="carImage" fitWidth="180.0" fitHeight="100" preserveRatio="true"/>
+    </StackPane>
 
-        <Label fx:id="carPrice" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;" text="\$150,000.00"/>
-    </children>
+    <Label fx:id="carPrice" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;" text="\$150,000.00"/>
 </VBox>
