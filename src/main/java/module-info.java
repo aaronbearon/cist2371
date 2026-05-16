@@ -8,4 +8,5 @@ open module aaronbearon {
     requires eu.hansolo.tilesfx;
     requires org.jdbi.v3.core;
     requires annotations;
+    requires java.desktop;
 }
