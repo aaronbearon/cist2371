@@ -1,19 +1,28 @@
-package aaronbearon.chapter32;
+package aaronbearon.chapter32.lab02;
 
+/**
+ * Aaron Blum, CIST 2373 Java 3, Lab 2
+ * Description: Multithread ping pong
+ */
 public class J302_1 {
     public static void main(String[] args) throws Exception {
+        // PingPong is an instance of Runnable
         Runnable ping = new PingPong("ping", 10);
         Runnable pong = new PingPong("pong", 10);
         Thread pingThread = new Thread(ping);
         Thread pongThread = new Thread(pong);
+        // Start the threads, and use join to pause the current thread flow.
         pingThread.start();
         pongThread.start();
         pingThread.join();
         pongThread.join();
-        System.out.println("main is exiting!");
+        // System.out.println("main is exiting!");
     }
 }
 
+/**
+ * PingPong prints either "ping" or "pong" a given number of times.
+ */
 class PingPong implements Runnable {
     private final String word;
     private final int times;

@@ -1,10 +1,16 @@
-package aaronbearon.chapter32;
+package aaronbearon.chapter32.Interview02;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
+/**
+ * Aaron Blum, CIST 2373 Java 3, Interview 2 part 1.
+ * Description: Five chefs cook ramen and take turns cooking on 4 burners.
+ */
 public class J212_2 {
     public static void main(String[] args) throws InterruptedException {
-        Kitchen kitchen = new Kitchen(20);
+        Kitchen kitchen = new Kitchen(inputRamenCount());
         Stove stove = new Stove(4);
         ArrayList<Thread> threads = new ArrayList<>();
         for (char chef = 'A'; chef <= 'E'; chef++) {
@@ -19,8 +25,33 @@ public class J212_2 {
         }
         System.out.println("ALL DONE!");
     }
+
+    /**
+     * Input the ramen count from stdin, prompting the user.
+     */
+    public static int inputRamenCount() {
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.print("How many ramens? ");
+                int ramen = input.nextInt();
+                if (ramen >= 0) {
+                    return ramen;
+                } else {
+                    throw new InputMismatchException();
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error, must be a whole number!");
+            }
+
+            input.nextLine();
+        }
+    }
 }
 
+/**
+ * The kitchen holds orders to be taken.
+ */
 class Kitchen {
     private int ramen;
 
@@ -28,6 +59,9 @@ class Kitchen {
         this.ramen = ramen;
     }
 
+    /**
+     * Try to take an order. Returns true if an order is taken or false if there are no more orders.
+     */
     public synchronized boolean take(char chef) {
         if (ramen > 0) {
             ramen--;
@@ -39,6 +73,9 @@ class Kitchen {
     }
 }
 
+/**
+ * A chef takes orders from the kitchen and cooks them using the stove.
+ */
 class Chef implements Runnable {
     private final char name;
     private final Kitchen kitchen;
@@ -74,6 +111,9 @@ class Chef implements Runnable {
     }
 }
 
+/**
+ * Allows chefs to take turns using synchronized burners.
+ */
 class Stove {
     private final char[] burners;
 
@@ -81,6 +121,10 @@ class Stove {
         burners = "_".repeat(burnerCount).toCharArray();
     }
 
+    /**
+     * Acquire a free burner exclusively. Blocks until a burner is free.
+     * You must release burner after.
+     */
     public synchronized int acquireBurner(char chef) {
         while (true) {
             for (int burnerId = 0; burnerId < burners.length; burnerId++) {
@@ -99,6 +143,9 @@ class Stove {
         }
     }
 
+    /**
+     * Release a previously acquired burner.
+     */
     public synchronized void releaseBurner(char chef, int burnerId) {
         if (burners[burnerId] != chef) {
             throw new IllegalStateException("wrong burner state");
@@ -109,3 +156,11 @@ class Stove {
         this.notifyAll();
     }
 }
+
+/*
+
+The Stove class contains two synchronized methods for burner access.
+The Kitchen class has a synchronized method for taking a ramen order.
+Multiple chefs (or instances of Runnable) cook in the kitchen using the stove.
+
+*/
