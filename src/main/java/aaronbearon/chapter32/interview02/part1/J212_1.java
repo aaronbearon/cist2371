@@ -1,4 +1,4 @@
-package aaronbearon.chapter32.Interview02;
+package aaronbearon.chapter32.interview02.part1;
 
 /**
  * Aaron Blum, CIST 2373 Java 3, Interview 2 part 1.

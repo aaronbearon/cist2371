@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<Pane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aaronbearon.chapter32.interview02.part2b.RamenController">
+   <Label fx:id="lblRamens" layoutX="180.0" layoutY="10.0" text="Ramen: 20" />
+   <Label fx:id="lblStove" layoutX="190.0" layoutY="200.0" text="____" />
+    <Circle fx:id="circle1" fill="WHITE" layoutX="100.0" layoutY="100.0" radius="50.0" stroke="BLACK" />
+    <Circle fx:id="circle2" fill="WHITE" layoutX="300.0" layoutY="100.0" radius="50.0" stroke="BLACK" />
+    <Circle fx:id="circle3" fill="WHITE" layoutX="100.0" layoutY="300.0" radius="50.0" stroke="BLACK" />
+    <Circle fx:id="circle4" fill="WHITE" layoutX="300.0" layoutY="300.0" radius="50.0" stroke="BLACK" />
+</Pane>
