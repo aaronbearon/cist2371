@@ -9,4 +9,5 @@ open module aaronbearon {
     requires org.jdbi.v3.core;
     requires annotations;
     requires java.desktop;
+    requires java.sql;
 }
