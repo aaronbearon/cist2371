@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -15,6 +18,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Aaron Blum, CIST 2373 Java 3, Lab 4, Database.
+ */
 public class Exercise32_06 extends Application {
     private Connection conn;
 
@@ -57,6 +63,7 @@ public class Exercise32_06 extends Application {
         primaryStage.show();
     }
 
+    // Ensure the database connection is closed before exiting.
     @Override
     public void stop() throws Exception {
         if (conn != null) {
@@ -86,8 +93,9 @@ public class Exercise32_06 extends Application {
             gridPane.add(cell, col, 0);
         }
 
-        // Populate data rows (Rows 1 to N)
+        // Populates data rows (Rows 0 to N - 1)
         for (int row = 0; row < rows.size(); row++) {
+            // Populates data cells in row
             for (int col = 0; col < rows.get(row).size(); col++) {
                 Label dataLabel = new Label(rows.get(row).get(col));
                 dataLabel.setStyle("-fx-text-fill: #333333;");
@@ -100,7 +108,7 @@ public class Exercise32_06 extends Application {
         }
     }
 
-    // Helper method to create a bordered cell container
+    // Helper method to create a bordered cell container with style
     private static StackPane createCell(Label content, String backgroundColor) {
         StackPane cell = new StackPane(content);
         cell.setAlignment(Pos.CENTER);
@@ -113,6 +121,7 @@ public class Exercise32_06 extends Application {
         launch(args);
     }
 
+    // Returns a list of table names in alphabetical (case-insensitive) order
     private List<String> queryTableNames() throws SQLException {
         List<String> tables = new ArrayList<>();
         ResultSet resultSet = conn.createStatement().executeQuery("SHOW TABLES;");
@@ -124,6 +133,7 @@ public class Exercise32_06 extends Application {
         return tables.stream().map(this::toTitleCase).toList();
     }
 
+    // Returns a list of column names in the order in which they're stored in the database
     private List<String> queryTableColumnNames(String table) throws SQLException {
         List<String> columns = new ArrayList<>();
 
@@ -135,10 +145,10 @@ public class Exercise32_06 extends Application {
                 """;
 
         try (PreparedStatement pstmt = conn.prepareStatement(queryColumnsSql)) {
-            // Bind dynamic values to the placeholders (Indexes start at 1)
+            // Binds dynamic values to the placeholders (Indexes start at 1)
             pstmt.setString(1, table);
 
-            // Execute the statement
+            // Executes the statement
             ResultSet resultSet = pstmt.executeQuery();
             while (resultSet.next()) {
                 String columnName = resultSet.getString(1);
@@ -148,6 +158,7 @@ public class Exercise32_06 extends Application {
         return columns;
     }
 
+    // Returns a list of rows, each containing a list of attributes
     private List<List<String>> queryTableRows(String table) throws SQLException {
         List<List<String>> rows = new ArrayList<>();
 
