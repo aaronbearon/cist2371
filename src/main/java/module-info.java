@@ -10,4 +10,7 @@ open module aaronbearon {
     requires annotations;
     requires java.desktop;
     requires java.sql;
+
+    requires org.apache.tomcat.embed.core;
+    requires org.apache.tomcat.embed.jasper;
 }
