@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrimeFactorization {
+    private static final int MAX = 25000;
+
     public static void main(String[] args) {
-        PrimesManager p = PrimesManager.setPrimesTillMax(104730);
-        p.printPrimes();
+        PrimesManager p = PrimesManager.setPrimesTillMax(MAX);
+        p.printFactors();
     }
 }
 
@@ -64,10 +66,29 @@ class PrimesManager {
         }
     }
 
-    /* TODO: Write a method to return the smallest prime factor of a number.
-        It should be the smallest prime to check for in once the big number is divided by that prime.
-        Example: Since 1001 is first discovered to be a multiple of 7 and then 1001 / 7 = 143,
-            check 143 for being a multiple of 7 first.
-        This will eventually print out the prime factorization of every number up to MAX.
-    */
+    public void printFactors() {
+        System.out.print("                ");
+        for (int i = 2; i <= MAX; i++) {
+            printFactorizations(i);
+            if (i % 10 == 0) {
+                System.out.println();
+            } else {
+                System.out.print("                ");
+            }
+        }
+    }
+
+    public void printFactorizations(int number) {
+        for (Integer prime : primes) {
+            if (number % prime == 0 && number != prime) {
+                System.out.print(prime + " * ");
+                printFactorizations(number / prime);
+                return;
+            } else if (number < prime * prime) {
+                break;
+            }
+        }
+
+        System.out.print(number);
+    }
 }
