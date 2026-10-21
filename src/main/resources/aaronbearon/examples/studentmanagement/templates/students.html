@@ -7,6 +7,7 @@
 <body>
 <h1>Student Management System</h1>
 <p><a th:href="@{/students/new}">Add Student</a></p>
+
 <h2>Search Students</h2>
 <form th:action="@{/}" method="get">
     <label for="lastName">LastName</label>
@@ -15,6 +16,7 @@
 
     <a th:href="@{/}">Clear Search</a>
 </form>
+
 <h2>Student Records</h2>
 <table border="1" cellpadding="8">
     <thead>
@@ -32,11 +34,14 @@
         <td th:text="${student.firstName}"></td>
         <td th:text="${student.lastName}"></td>
         <td th:text="${student.email}"></td>
-        <td><a th:href ="@{/students/edit/{id}(id=${student.id})}">Edit</a>
+        <td>
+            <a th:href="@{/students/edit/{id}(id=${student.id})}">Edit</a>
 
-        <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post" style="display:inline">
-            <button type="submit">Delete</button>
-        </form>
+            <form th:action="@{/students/delete/{id}(id=${student.id})}"
+                  method="post"
+                  style="display:inline">
+                <button type="submit">Delete</button>
+            </form>
         </td>
     </tr>
     <tr th:if="${#lists.isEmpty(students)}">
@@ -44,5 +49,6 @@
     </tr>
     </tbody>
 </table>
+
 </body>
 </html>

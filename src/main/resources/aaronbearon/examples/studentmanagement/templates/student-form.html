@@ -8,7 +8,9 @@
 <h1 th:text="${student.id==null} ? 'Add Student': 'Edit Student'">
     Student Form
 </h1>
-<form th:object="${student}" th:action="${student.id==null} ? @{/students} : @{/students/update/{id}(id=${student.id})}" method="post">
+<form th:object="${student}"
+      th:action="${student.id==null} ? @{/students} : @{/students/update/{id}(id=${student.id})}"
+      method="post">
     <div>
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" th:field="*{firstName}">
@@ -29,6 +31,7 @@
     <br>
     <button type="submit">Save Student</button>
 </form>
+
 <p>
     <a th:href="@{/}">Back to Student List</a>
 </p>

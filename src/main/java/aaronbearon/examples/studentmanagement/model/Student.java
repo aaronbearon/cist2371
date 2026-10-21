@@ -22,6 +22,6 @@ public class Student {
     @NotBlank(message = "Last name is required")
     private String lastName;
     @NotBlank(message = "Email is required")
-    @Email
+    @Email(message = "Enter a valid email address")
     private String email;
 }
