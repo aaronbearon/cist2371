@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Calculator</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 135px;
+        }
+        .result {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Loan Calculator using Servlet</h1>
+<form action="calculatePayment" method="post" novalidate>
+    <div style="margin: 2px; border: 2px; padding: 2px;">
+        <label for="loanAmount">Loan Amount:</label>
+        <input type="number" step="1000" id="loanAmount" name="loanAmountStr" value="%s">
+        <span class="error">%s</span>
+    </div>
+    <div style="margin: 2px; border: 2px; padding: 2px;">
+        <label for="interestRate">Annual Interest Rate</label>
+        <input type="number" step="0.1" id="interestRate" name="interestRateStr" value="%s">
+        <span class="error">%s</span>
+    </div>
+    <div style="margin: 2px; border: 2px; padding: 2px;">
+        <label for="loanYears">Number of Years</label>
+        <input type="number" step="1" id="loanYears" name="loanYearsStr" value="%s">
+        <span class="error">%s</span>
+    </div>
+    <div style="display: flex; gap: 0;">
+        <button type="submit">Compute Loan Payment</button>
+        <button type="reset">Reset</button>
+    </div>
+    <div style="margin-top: 20px">
+        <div class="result">
+            <div>
+                Loan Amount:
+                <span>%s</span>
+            </div>
+            <div>
+                Annual Interest Rate:
+                <span>%s</span>
+            </div>
+            <div>
+                Number of Years:
+                <span>%s</span>
+            </div>
+            <div>
+                Monthly Payment:
+                <span>%s</span>
+            </div>
+            <div>
+                Total Payment:
+                <span>%s</span>
+            </div>
+        </div>
+        <div class="error">
+            <span>%s</span>
+        </div>
+    </div>
+</form>
+</body>
+</html>
