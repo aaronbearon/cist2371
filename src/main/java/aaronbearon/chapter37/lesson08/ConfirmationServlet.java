@@ -19,24 +19,32 @@ public class ConfirmationServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        out.println("<!DOCTYPE html>");
-        out.println("<html lang=\"en\"");
-        out.println("<head><title>Saved Registration</title></head>");
-        out.println("<body>");
-
+        String content;
         if (session == null || session.getAttribute("studentName") == null) {
-            out.println("<h1>No Registration Found</h1>");
-            out.println("<p>Please register first!</p>");
+            content = """
+                    <h1>No Registration Found</h1>
+                    <p>Please register first!</p>
+                    """;
         } else {
             String studentName = (String) session.getAttribute("studentName");
             String studentID = (String) session.getAttribute("studentID");
             String course = (String) session.getAttribute("course");
-            out.println("<h1>Saves Registration</h1>");
-            out.println("<p>Student Name: " + studentName + "</p>");
-            out.println("<p>Student ID: " + studentID + "</p>");
-            out.println("<p>Student Name: " + course + "</p>");
+            content = """
+                    <h1>Saved Registration</h1>
+                    <p>Student Name: %s</p>
+                    <p>Student ID: %s</p>
+                    <p>Course: %s</p>
+                    """.formatted(studentName, studentID, course);
         }
 
-        out.println("</body> </html>");
+        out.println("""
+                <!DOCTYPE html>
+                <html lang="en">
+                <head><title>Saved Registration</title></head>
+                <body>
+                %s
+                </body>
+                </html>
+                """.formatted(content));
     }
 }

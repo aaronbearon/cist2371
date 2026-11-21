@@ -19,34 +19,36 @@ public class RegistrationServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        out.println("<DOCTYPE html>\n" +
-                "<html lang=\"en\"\n" +
-                "<head>\n" +
-                "    <title>Course Registration</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <h1>Student Course Registration</h1>\n" +
-                "\n" +
-                "    <form action=\"register\" method=\"post\">\n" +
-                "\n" +
-                "        <label>Student Name:</label>\n" +
-                "        <input type=\"text\" name=\"studentName\" required>\n" +
-                "        <br><br>\n" +
-                "        <label>Student ID:</label>\n" +
-                "        <input type=\"text\" name=\"studentID\" required>\n" +
-                "        <br><br>\n" +
-                "        <label>Select a Course:</label>\n" +
-                "        <select name=\"course\">\n" +
-                "            <option value=\"Java Programming III\">Java Programming III</option>\n" +
-                "            <option value=\"Database Programming\">Database Programming</option>\n" +
-                "            <option value=\"Web Development\">Web Development</option>\n" +
-                "        </select>\n" +
-                "        <br><br>\n" +
-                "        <button type=\"submit\">Register</button>\n" +
-                "\n" +
-                "    </form>\n" +
-                "</body>\n" +
-                "</html>\n");
+        out.println("""
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <title>Course Registration</title>
+                </head>
+                <body>
+                    <h1>Student Course Registration</h1>
+                
+                    <form action="register" method="post">
+                
+                        <label>Student Name:</label>
+                        <input type="text" name="studentName" required>
+                        <br><br>
+                        <label>Student ID:</label>
+                        <input type="text" name="studentID" required>
+                        <br><br>
+                        <label>Select a Course:</label>
+                        <select name="course">
+                            <option value="Java Programming III">Java Programming III</option>
+                            <option value="Database Programming">Database Programming</option>
+                            <option value="Web Development">Web Development</option>
+                        </select>
+                        <br><br>
+                        <button type="submit">Register</button>
+                
+                    </form>
+                </body>
+                </html>
+                """);
     }
 
     @Override
@@ -67,32 +69,26 @@ public class RegistrationServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
 
         PrintWriter out = response.getWriter();
-        out.println("<DOCTYPE html>\n" +
-                "<html lang=\"en\"\n" +
-                "<head>\n" +
-                "    <title>Registration Confirmation</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <h1>Registration Successful</h1>\n" +
-                "\n" +
-                "    <p>Student Name: " +
-                studentName +
-                "    </p>" +
-                "\n" +
-                "    <p>Student ID: " +
-                studentId +
-                "    </p>" +
-                "\n" +
-                "    <p>Course: " +
-                course +
-                "    </p>" +
-                "\n" +
-                "    <form action=\"confirmation\" method=\"get\">\n" +
-                "\n" +
-                "        <button type=\"submit\">View Saves Registration</button>\n" +
-                "\n" +
-                "    </form>\n" +
-                "</body>\n" +
-                "</html>\n");
+        out.println("""
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <title>Registration Confirmation</title>
+                </head>
+                <body>
+                    <h1>Registration Successful</h1>
+
+                    <p>Student Name: %s</p>
+                    <p>Student ID: %s</p>
+                    <p>Course: %s</p>
+
+                    <form action="confirmation" method="get">
+
+                        <button type="submit">View Saved Registration</button>
+
+                    </form>
+                </body>
+                </html>
+                """.formatted(studentName, studentId, course));
     }
 }
