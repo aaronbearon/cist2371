@@ -1,4 +1,4 @@
-package aaronbearon.chapter16.Interview;
+package aaronbearon.chapter16.interview;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
