@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duke's Bookstore</title>
+    <style>
+        h1 {
+            color: #005588;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-button {
+            background: none;
+            border: none;
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            font: inherit;
+            margin-left: 20px;
+        }
+
+        .link-button:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Duke's Bookstore</h1>
+<p>What We're Reading</p>
+<p style="margin-left: 20px;">
+    <strong style="color: #005588;" th:text="${featured.title}">No book selected.</strong>
+    talks about how web components can transform the way you develop
+    applications for the web.
+    This is a must-read for any self-respecting web developer!</p>
+<p>You selected:</p>
+<p style="margin-left: 20px;">
+    <strong style="color: #005588;" th:text="${selected.title}">No book selected.</strong>
+</p>
+<form th:action="@{/addBookToCart(bookId=${featured.id})}" method="post" style="display:inline">
+    <button type="submit" class="link-button">Add Featured Book to Cart</button>
+</form>
+<form th:action="@{/addBookToCart(bookId=${selected.id})}" method="post" style="display:inline">
+    <button type="submit" class="link-button">Add Selected Book to Cart</button>
+</form>
+<a class="link-button" href="/store">Start Shopping</a>
+<a class="link-button" href="/">Back to Home</a>
+</body>
+</html>

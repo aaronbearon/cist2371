@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Loan Calculator</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 135px;
+        }
+        .result {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h3>Compute Loan Payment</h3>
+<form th:action="@{/calculatePayment}" method="post" novalidate>
+    <div style="margin: 2px; border: 2px; padding: 2px;">
+        <label for="loanAmount">Loan Amount:</label>
+        <input type="number" step="any" id="loanAmount" name="loanAmountStr" th:value="${loanAmountRaw}">
+        <span class="error" th:text="${loanAmountErr}"></span>
+    </div>
+    <div style="margin: 2px; border: 2px; padding: 2px;">
+        <label for="interestRate">Annual Interest Rate</label>
+        <input type="number" step="any" id="interestRate" name="interestRateStr" th:value="${interestRateRaw}">
+        <span class="error" th:text="${interestRateErr}"></span>
+    </div>
+    <div style="margin: 2px; border: 2px; padding: 2px;">
+        <label for="years">Number of Years</label>
+        <input type="number" step="1" id="years" name="yearsStr" th:value="${yearsRaw}">
+        <span class="error" th:text="${yearsErr}"></span>
+    </div>
+    <div style="display: flex; gap: 0;">
+        <button type="submit">Compute Loan Payment</button>
+        <button type="reset">Reset</button>
+    </div>
+    <div style="margin-top: 20px">
+        <div class="result" th:if="${totalPayment != null}">
+            <div>
+                Loan Amount:
+                <span th:text="${loanAmount != null ? #numbers.formatCurrency(loanAmount) : ''}"></span>
+            </div>
+            <div>
+                Annual Interest Rate:
+                <span th:text="${interestRate != null ? #numbers.formatPercent(interestRate / 100.0, 1, 2) : ''}"></span>
+            </div>
+            <div>
+                Number of Years:
+                <span th:text="${years != null ? years : ''}"></span>
+            </div>
+            <div>
+                Monthly Payment:
+                <span th:text="${monthlyPayment != null ? #numbers.formatCurrency(monthlyPayment) : ''}"></span>
+            </div>
+            <div>
+                Total Payment:
+                <span th:text="${totalPayment != null ? #numbers.formatCurrency(totalPayment) : ''}"></span>
+            </div>
+        </div>
+        <div class="error" th:if="${bottomErrorMessage != null}">
+            <span th:text="${bottomErrorMessage}"></span>
+        </div>
+    </div>
+</form>
+</body>
+</html>

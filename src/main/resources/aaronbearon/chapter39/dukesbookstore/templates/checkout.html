@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duke's Bookstore</title>
+    <style>
+        h1 {
+            color: #005588;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Duke's Bookstore</h1>
+
+<p>Your total purchase amount is: <strong th:text="${#numbers.formatCurrency(totalPrice)}"></strong></p>
+<p>To purchase the items in your shopping cart, please provide us with the following information:</p>
+
+<h2>Check Out</h2>
+
+<form>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+    </div>
+    <br>
+    <div>
+        <label for="cc">Credit Card Number:</label>
+        <input type="text" id="cc" name="credit_card">
+    </div>
+    <br>
+    <div>
+        <label for="shipping">Shipping:</label>
+        <select id="shipping" name="shipping">
+            <option value="quick">Quick Shipping</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <label>FREE Newsletter Subscriptions:</label>
+        <br>
+        <input type="checkbox" id="quarterly" name="newsletter" value="quarterly">
+        <label for="quarterly">Duke's Quarterly</label>
+        <br>
+        <input type="checkbox" id="almanac" name="newsletter" value="almanac">
+        <label for="almanac">Innovator's Almanac</label>
+        <br>
+        <input type="checkbox" id="diet" name="newsletter" value="diet">
+        <label for="diet">Duke's Diet and Exercise Journal</label>
+        <br>
+        <input type="checkbox" id="ramblings" name="newsletter" value="ramblings">
+        <label for="ramblings">Random Ramblings</label>
+    </div>
+    <br>
+    <button type="submit">Submit Information</button>
+</form>
+
+</body>
+</html>

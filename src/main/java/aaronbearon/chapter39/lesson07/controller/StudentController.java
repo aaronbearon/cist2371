@@ -1,7 +1,7 @@
-package aaronbearon.examples.studentmanagement.controller;
+package aaronbearon.chapter39.lesson07.controller;
 
-import aaronbearon.examples.studentmanagement.model.Student;
-import aaronbearon.examples.studentmanagement.repository.StudentRepository;
+import aaronbearon.chapter39.lesson07.model.Student;
+import aaronbearon.chapter39.lesson07.repository.StudentRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

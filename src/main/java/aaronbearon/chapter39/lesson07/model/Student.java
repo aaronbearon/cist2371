@@ -1,4 +1,4 @@
-package aaronbearon.examples.studentmanagement.model;
+package aaronbearon.chapter39.lesson07.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

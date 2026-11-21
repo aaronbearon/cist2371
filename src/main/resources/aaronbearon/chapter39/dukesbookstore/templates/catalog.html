@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Duke's Bookstore</title>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        h1 {
+            color: #005588;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a:link, a:visited {
+            color: #005588;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover, a:focus {
+            color: #002244;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<!-- My Early Years: Growing Up on Star7, by Duke -->
+<!-- Web Servers for Fun and Profit, by Jeeves -->
+<!-- Web Components for Web Developers, by Webster Masterson -->
+<!-- From Oak to Java: The Revolution of a Language, by Kevin Novation -->
+<!-- The Green Project: Programming for Consumers Devices, by Ben Thrilled -->
+<!-- Java Intermediate Bytecodes, by Happy Coding -->
+<body>
+<h1>Duke's Bookstore</h1>
+<p style="margin-bottom: 10px;">Choose a Book from our Catalog</p>
+<ul>
+    <li th:each="book, iterStat : ${books}">
+        <a th:href="@{/selected(bookId=${book.id})}" th:text="${book.title} + ', by ' + ${book.author}">Default Text</a>
+    </li>
+</ul>
+</body>
+</html>

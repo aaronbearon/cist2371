@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duke's Bookstore</title>
+    <style>
+        h1 {
+            color: #005588;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        table {
+            margin: 1em;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .link-button {
+            background: none;
+            border: none;
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            font: inherit;
+            margin-left: 20px;
+        }
+
+        .link-button:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Duke's Bookstore</h1>
+<form th:action="@{/clearCart}" method="post" style="display:inline">
+    <button type="submit" class="link-button">Clear Cart</button>
+</form>
+<a class="link-button" href="/checkout">Buy Your Books</a>
+<a class="link-button" href="/store">Continue Shopping</a>
+
+<table style="border-block: black;">
+    <thead>
+    <tr>
+        <th>Quantity</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book, iterStat : ${books}">
+        <td th:text="${book.getInCart()}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${#numbers.formatCurrency(book.price)}"></td>
+        <td>
+            <form th:action="@{/removeBookFromCart(bookId=${book.id})}" th:object="${book}" method="post">
+                <button type="submit" name="removeFromCart">Remove Item</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<strong th:text="|Total: ${total}|"></strong>
+</body>
+</html>

@@ -1,6 +1,6 @@
-package aaronbearon.examples.studentmanagement.repository;
+package aaronbearon.chapter39.lesson07.repository;
 
-import aaronbearon.examples.studentmanagement.model.Student;
+import aaronbearon.chapter39.lesson07.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
